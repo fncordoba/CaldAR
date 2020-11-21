@@ -1,10 +1,9 @@
 const technicians = require ("../data/technicians.json");
-
-// getAllTechnicians
 const getAllTechnicians = () => {
     return technicians;
 };
 
+// getAllTechnicians
 module.exports = {
     getAllTechnicians
 };
