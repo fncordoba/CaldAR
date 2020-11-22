@@ -1,5 +1,6 @@
 const express = require('express');
 const techniciansController = require('./controllers/techniciansController');
+const boylerTypesController = require('./controllers/boylerTypesController')
 
 const app = express();
 const port = 3000;
@@ -7,6 +8,11 @@ const port = 3000;
 app.get("/getAllTechnicians", (req, res) => {
   const technicians = techniciansController.getAllTechnicians();
   res.json(technicians);
+});
+
+app.get("/getAllBoylerTypes", (req, res) => {
+  const boylerTypes = boylerTypesController.getAllBoylerTypes();
+  res.json(boylerTypes)
 });
 
 app.listen(port, () => {

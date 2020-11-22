@@ -1,5 +1,7 @@
 const boylerTypes = require('../data/boylerTypes.json');
 
-const getAllBoylerTypes = () => {return boylerTypes};
+const getAllBoylerTypes = () => boylerTypes;
 
-module.exports = {getAllBoylerTypes};
+module.exports = {
+    getAllBoylerTypes
+};
