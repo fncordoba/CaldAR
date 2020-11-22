@@ -27,6 +27,11 @@ app.get("/getAllBoylers", (req, res) => {
   res.json(boylers);
 });
 
+app.get("/getAllBoylerTypesByDescription/:description", (req, res) => {
+  const boylerTyperByDescription = boylerTypesController.getBoylerTypesByDescription();
+  res.send(req.params.description)
+});
+
 app.listen(port, () => {
   console.log(`CaldAR app listening at http://localhost:${port}`);
 });
