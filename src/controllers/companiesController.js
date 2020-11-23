@@ -7,7 +7,21 @@ const getCompanyById = (id) => {
     return company;
 };
 
+const getCompanyByBuildingId = (buildingId) => {
+    let matchedCompanies = [];
+    companies.filter(company => {
+        company.buildings.forEach( building => {
+            if (building.toString() === buildingId){
+                console.log(company);
+                matchedCompanies.push(company);
+            }
+        });
+    });
+    return matchedCompanies;
+};
+
 module.exports = {
     getAllCompanies,
-    getCompanyById
+    getCompanyById,
+    getCompanyByBuildingId
 };

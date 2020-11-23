@@ -43,6 +43,16 @@ app.get('/getCompanyById/:id', (req, res) => {
   }else res.json(company);
 });
 
+app.get('/getCompaniesByBuildingId/:buildingId', (req, res) => {
+  const buildingId = req.params.buildingId;
+  const companies = companiesController.getCompanyByBuildingId(buildingId);
+  if(companies.length !== 0){
+    res.json(companies);
+  } else res.json({
+      msg: `No building owns a building with an id such as ${buildingId}`
+  });
+});
+
 app.get("/getTechniciansById/:id", (req, res) => {
   const id = req.params.id.toString();
   const technician = techniciansController.getTechniciansById(id);
