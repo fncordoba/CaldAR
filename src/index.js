@@ -70,9 +70,10 @@ app.get("/getAllBoylerTypesById/:id", (req, res) => {
   res.json(boylerTypesById);
 })
 
-app.get("/getTechniciansByLastName/:lastName", (req, res) => {
-  const lastName = req.params.lastName;
-  const technician = techniciansController.getTechniciansByLastName(lastName);
+app.get("/getTechniciansBy/:name/:lastName", (req, res) => {
+  const name = String(req.params.name);
+  const lastName = String(req.params.lastName);
+  const technician = techniciansController.getTechniciansBy(name, lastName);
   res.json(technician);
 });
 
