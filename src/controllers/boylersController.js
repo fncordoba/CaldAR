@@ -5,5 +5,5 @@ const getAllBoylers = () => {
 };
 
 module.exports = {
-    getAllBoylers;
+    getAllBoylers
 };
