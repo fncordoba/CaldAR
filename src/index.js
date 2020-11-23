@@ -2,6 +2,7 @@ const express = require('express');
 const techniciansController = require('./controllers/techniciansController');
 const boylerTypesController = require('./controllers/boylerTypesController')
 const companiesController = require('./controllers/companiesController');
+const boylersController = require('./controllers/boylersController');
 
 const app = express();
 const port = 3000;
@@ -19,6 +20,11 @@ app.get("/getAllBoylerTypes", (req, res) => {
 app.get("/getAllCompanies", (req, res) => {
   const companies = companiesController.getAllCompanies()
   res.json(companies);
+});
+
+app.get("/getAllBoylers", (req, res) => {
+  const boylers = boylersController.getAllBoylers();
+  res.json(boylers);
 });
 
 app.listen(port, () => {
