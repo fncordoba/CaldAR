@@ -34,7 +34,7 @@ app.get("/getAllBoylerTypesByDescription/:description", (req, res) => {
 });
 
 app.get('/getCompanyById/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   const company = companiesController.getCompanyById(id);
   if(!company){
     res.json({
