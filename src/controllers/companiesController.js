@@ -9,10 +9,9 @@ const getCompanyById = (id) => {
 
 const getCompanyByBuildingId = (buildingId) => {
     let matchedCompanies = [];
-    companies.filter(company => {
+    companies.forEach(company => {
         company.buildings.forEach( building => {
             if (building.toString() === buildingId){
-                console.log(company);
                 matchedCompanies.push(company);
             }
         });
