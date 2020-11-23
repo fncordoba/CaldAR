@@ -21,6 +21,16 @@ app.get("/getAllCompanies", (req, res) => {
   res.json(companies);
 });
 
+app.get("/getTechniciansById/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const technician = techniciansController.getTechniciansById(id);
+  if (!technician.length==0){
+    res.json(technician);
+  } else {
+    res.send('No technician found with the Id: ' + id);
+  }
+});
+
 app.listen(port, () => {
   console.log(`CaldAR app listening at http://localhost:${port}`);
 });
