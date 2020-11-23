@@ -27,10 +27,14 @@ app.get("/getAllBoylers", (req, res) => {
   res.json(boylers);
 });
 
-app.get("/getAllBoylerTypesByDescription/:description", (req, res) => {
-  const description = req.params.description;
-  const boylerTyperByDescription = boylerTypesController.getBoylerTypesByDescription(description);
-  res.json(boylerTyperByDescription);
+app.get("/getTechniciansById/:id", (req, res) => {
+  const id = req.params.id.toString();
+  const technician = techniciansController.getTechniciansById(id);
+  if (technician){
+    res.json(technician);
+  } else {
+    res.send('No technician found with the Id: ' + id);
+  }
 });
 
 app.get('/getCompanyById/:id', (req, res) => {
