@@ -28,8 +28,9 @@ app.get("/getAllBoylers", (req, res) => {
 });
 
 app.get("/getAllBoylerTypesByDescription/:description", (req, res) => {
-  const boylerTyperByDescription = boylerTypesController.getBoylerTypesByDescription();
-  res.send(req.params.description)
+  const description = req.params.description;
+  const boylerTyperByDescription = boylerTypesController.getBoylerTypesByDescription(description);
+  res.json(boylerTyperByDescription);
 });
 
 app.listen(port, () => {
