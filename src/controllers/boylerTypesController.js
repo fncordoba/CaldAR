@@ -6,7 +6,13 @@ const getBoylerTypesByDescription = description => {
     return boylerTypesByDescription;
 };
 
+const getBoylerTypeById = id => {
+    const boylerTypeById = boylerTypes.find(boylerType.id === id);
+    return boylerTypeById;
+}
+
 module.exports = {
     getAllBoylerTypes,
-    getBoylerTypesByDescription
+    getBoylerTypesByDescription,
+    getBoylerTypeById
 };
