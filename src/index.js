@@ -47,6 +47,16 @@ app.get('/getCompanyById/:id', (req, res) => {
   }else res.json(company);
 });
 
+app.get("/getTechniciansById/:id", (req, res) => {
+  const id = req.params.id.toString();
+  const technician = techniciansController.getTechniciansById(id);
+  if (!technician){
+    res.json(technician);
+  } else {
+    res.send('No technician found with the Id: ' + id);
+  }
+});
+
 app.listen(port, () => {
   console.log(`CaldAR app listening at http://localhost:${port}`);
 });
