@@ -33,6 +33,16 @@ app.get("/getAllBoylerTypesByDescription/:description", (req, res) => {
   res.json(boylerTyperByDescription);
 });
 
+app.get('/getCompanyById/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const company = companiesController.getCompanyById(id);
+  if(!company){
+    res.json({
+      msg : 'Company not found'
+    })
+  }else res.json(company);
+});
+
 app.listen(port, () => {
   console.log(`CaldAR app listening at http://localhost:${port}`);
 });
