@@ -53,6 +53,11 @@ app.get("/getTechniciansById/:id", (req, res) => {
   }
 });
 
+app.get("/getBoylersByBuilding/:building", (req, res) => {
+  const boylersBuilding = boylersController.getBoylersByBuilding(req.params.building);
+  res.json(boylersBuilding);
+});
+
 app.listen(port, () => {
   console.log(`CaldAR app listening at http://localhost:${port}`);
 });
