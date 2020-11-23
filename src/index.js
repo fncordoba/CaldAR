@@ -10,7 +10,7 @@ app.get("/getAllTechnicians", (req, res) => {
   res.json(technicians);
 });
 
-app.get("/buildings", (req, res) => {
+app.get("/getAllBuildings", (req, res) => {
     const category = req.query.category;
     const value = req.query.value;
     let buildings;
@@ -24,13 +24,13 @@ app.get("/buildings", (req, res) => {
     res.json(buildings);
 });
 
-app.get("/buildings/:id", (req, res) => {
+app.get("/getBuildingsById/:id", (req, res) => {
     const id = req.params.id;
     const building = buildingsController.getBuildingById(id);
     res.json(building);
 });
 
-app.delete("/buildings/:id", (req, res) => {
+app.delete("/removeBuilding/:id", (req, res) => {
     const id = req.params.id;
     const buildings = buildingsController.deleteBuildingById(id);
     res.json(buildings);
