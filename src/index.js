@@ -45,12 +45,8 @@ app.get('/getCompanyById/:id', (req, res) => {
 
 app.get('/getCompaniesByBuildingId/:buildingId', (req, res) => {
   const buildingId = req.params.buildingId;
-  const companies = companiesController.getCompanyByBuildingId(buildingId);
-  if(companies.length !== 0){
-    res.json(companies);
-  } else res.json({
-      msg: `No building owns a building with an id such as ${buildingId}`
-  });
+  const companies = companiesController.getCompaniesByBuildingId(buildingId);
+  res.json(companies);
 });
 
 app.get("/getTechniciansById/:id", (req, res) => {
