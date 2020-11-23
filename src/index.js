@@ -2,6 +2,7 @@ const express = require('express');
 const techniciansController = require('./controllers/techniciansController');
 const boylerTypesController = require('./controllers/boylerTypesController')
 const companiesController = require('./controllers/companiesController');
+const boylersController = require('./controllers/boylersController');
 
 const app = express();
 const port = 3000;
@@ -19,6 +20,27 @@ app.get("/getAllBoylerTypes", (req, res) => {
 app.get("/getAllCompanies", (req, res) => {
   const companies = companiesController.getAllCompanies()
   res.json(companies);
+});
+
+app.get("/getAllBoylers", (req, res) => {
+  const boylers = boylersController.getAllBoylers();
+  res.json(boylers);
+});
+
+app.get("/getAllBoylerTypesByDescription/:description", (req, res) => {
+  const description = req.params.description;
+  const boylerTyperByDescription = boylerTypesController.getBoylerTypesByDescription(description);
+  res.json(boylerTyperByDescription);
+});
+
+app.get('/getCompanyById/:id', (req, res) => {
+  const id = req.params.id;
+  const company = companiesController.getCompanyById(id);
+  if(!company){
+    res.json({
+      msg : 'Company not found'
+    })
+  }else res.json(company);
 });
 
 app.get("/getTechniciansById/:id", (req, res) => {
