@@ -5,5 +5,5 @@ const getAllTechnicians = () => {
 };
 
 module.exports = {
-    getAllTechnicians
+    getAllTechnicians,
 };
