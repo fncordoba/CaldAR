@@ -22,9 +22,9 @@ app.get("/getAllCompanies", (req, res) => {
 });
 
 app.get("/getTechniciansById/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = req.params.id.toString();
   const technician = techniciansController.getTechniciansById(id);
-  if (!technician.length==0){
+  if (!technician){
     res.json(technician);
   } else {
     res.send('No technician found with the Id: ' + id);

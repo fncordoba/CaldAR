@@ -5,7 +5,7 @@ const getAllTechnicians = () => {
 };
 
 const getTechniciansById = id => {
-    const technician = technicians.filter(technician => technician.id === id);
+    const technician = technicians.find(technician => technician.id.toString() === id);
     return technician;
 };
 
