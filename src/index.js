@@ -3,6 +3,7 @@ const techniciansController = require('./controllers/techniciansController');
 const boylerTypesController = require('./controllers/boylerTypesController')
 const companiesController = require('./controllers/companiesController');
 const boylersController = require('./controllers/boylersController');
+const buildingsController = require('./controllers/buildingsController');
 
 const app = express();
 const port = 3000;
