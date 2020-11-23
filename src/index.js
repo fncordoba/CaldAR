@@ -70,6 +70,12 @@ app.get("/getAllBoylerTypesById/:id", (req, res) => {
   res.json(boylerTypesById);
 })
 
+app.get("/getTechniciansByLastName/:lastName", (req, res) => {
+  const lastName = req.params.lastName;
+  const technician = techniciansController.getTechniciansByLastName(lastName);
+  res.json(technician);
+});
+
 app.listen(port, () => {
   console.log(`CaldAR app listening at http://localhost:${port}`);
 });
