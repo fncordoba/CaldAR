@@ -1,7 +1,7 @@
 const express = require('express');
 const techniciansController = require('./controllers/techniciansController');
 const boylerTypesController = require('./controllers/boylerTypesController')
-const companiesController = require('./controllers/companeisController');
+const companiesController = require('./controllers/companiesController');
 
 const app = express();
 const port = 3000;

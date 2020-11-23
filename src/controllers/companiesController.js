@@ -1,8 +1,6 @@
 const companies = require('../data/companies');
 
-const getAllCompanies = function(){
-    return companies;
-};
+const getAllCompanies = () => companies;
 
 module.exports = {
     getAllCompanies,
