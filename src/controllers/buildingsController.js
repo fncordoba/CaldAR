@@ -1,20 +1,20 @@
-// const buildings = require ("../data/buildings.json");
+let buildings = require ("../data/buildings.json");
 const fs = require("fs");
 
-const readBuildingsFile = () => {
+/*const readBuildingsFile = () => {
+    //I reread the file in each fn because it is stored in the cache and does not show me the rewrite.
     const buildings = JSON.parse(fs.readFileSync(__dirname + '/../data/buildings.json', 'utf8'));
     return buildings;
-};
+};*/
 
 const getAllBuildings = () => {
-    const buildings = readBuildingsFile();
     return buildings;
 };
 
-const getBuildingsByCategory = (category, value) => {
+const getBuildingsByFirstName = (firstName, value) => {
     const buildings = readBuildingsFile();
     return buildings.filter((building) => {
-        return building[category].toString() === value;
+        return building[firstName].toString() === value;
     });
 };
 
@@ -24,18 +24,20 @@ const getBuildingById = (value) => {
 };
 
 const deleteBuildingById = (id) => {
-    const buildings = readBuildingsFile();
-    const newAllBuildings = buildings.filter((building) => {
+    buildings = buildings.filter((building) => {
         return building.id.toString() !== id;
     });
-    const content = JSON.stringify(newAllBuildings)
     try {
-        fs.writeFileSync(__dirname + "/../data/buildings.json", content, { encoding: 'utf8', flag: 'w' });
+        fs.writeFileSync(
+            __dirname + "/../data/buildings.json",
+            JSON.stringify(buildings),
+            { encoding: 'utf8', flag: 'w' }
+        );
     } catch (err) {
         throw err;
     }
-    
-    return newAllBuildings;
+
+    return buildings;
 };
 
 module.exports = {
