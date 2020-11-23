@@ -7,7 +7,7 @@ const getBoylerTypesByDescription = description => {
 };
 
 const getBoylerTypeById = id => {
-    const boylerTypeById = boylerTypes.find(boylerType.id === id);
+    const boylerTypeById = boylerTypes.find(boylerType => boylerType.id.toString() === id);
     return boylerTypeById;
 }
 
