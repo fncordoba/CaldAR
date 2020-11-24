@@ -11,17 +11,14 @@ app.get("/getAllTechnicians", (req, res) => {
 });
 
 app.get("/getAllBuildings", (req, res) => {
-    const category = req.query.category;
-    const value = req.query.value;
-    let buildings;
-    if (category && value) {
-        console.log(`GET /buildings category=${category} value=${value}`);
-        buildings = buildingsController.getBuildingsByCategory(category, value);
-    } else {
-        console.log("GET /buildings");
-        buildings = buildingsController.getAllBuildings();
-    }
+    const buildings = buildingsController.getAllBuildings();
     res.json(buildings);
+  });
+
+app.get("/getBuildingsByAddress/:address", (req, res) => {
+    const address = req.params.address;
+    const BuildingsByAddress = BuildingsByAddress.getBuildingsByAddress(address);
+    res.json(BuildingsByAddress);
 });
 
 app.get("/getBuildingsById/:id", (req, res) => {
@@ -30,7 +27,7 @@ app.get("/getBuildingsById/:id", (req, res) => {
     res.json(building);
 });
 
-app.delete("/removeBuilding/:id", (req, res) => {
+app.get("/removeBuilding/:id", (req, res) => {
     const id = req.params.id;
     const buildings = buildingsController.deleteBuildingById(id);
     res.json(buildings);
