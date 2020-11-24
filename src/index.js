@@ -71,13 +71,10 @@ app.get("/getAllBoylerTypesById/:id", (req, res) => {
 })
 
 app.get("/getTechniciansBy/:name/:lastName", (req, res) => {
-  const name = req.params.name.toString();
-  const lastName = req.params.lastName.toString();
+  const name = req.params.name;
+  const lastName = req.params.lastName;
   const technician = techniciansController.getTechniciansBy(name, lastName);
-  if (!technician.length==0){
-    res.json(technician);
-  }
-    res.send('No technician found with the name: ' + name + ' ' + lastName);
+  res.json(technician);
 });
 
 app.listen(port, () => {

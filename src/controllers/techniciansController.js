@@ -11,8 +11,8 @@ const getTechniciansById = id => {
 
 const getTechniciansBy = (name, lastName) => {
     const technician = technicians.filter(
-        technician => technician.name.toString() === name && 
-        technician.lastName.toString() === lastName
+        technician => technician.name === name && 
+        technician.lastName === lastName
         );
     return technician;
 };
