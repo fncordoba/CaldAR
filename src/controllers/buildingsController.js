@@ -1,26 +1,19 @@
 let buildings = require ("../data/buildings.json");
 const fs = require("fs");
 
-/*const readBuildingsFile = () => {
-    //I reread the file in each fn because it is stored in the cache and does not show me the rewrite.
-    const buildings = JSON.parse(fs.readFileSync(__dirname + '/../data/buildings.json', 'utf8'));
-    return buildings;
-};*/
-
 const getAllBuildings = () => {
     return buildings;
 };
 
-const getBuildingsByFirstName = (firstName, value) => {
-    const buildings = readBuildingsFile();
+const getBuildingsByAddress = (address, value) => {
     return buildings.filter((building) => {
-        return building[firstName].toString() === value;
+        return building.address.toString() === value;
     });
 };
 
-const getBuildingById = (value) => {
-    const building = getBuildingsByCategory("id", value);
-    return building[0];
+const getBuildingById = (id) => {
+    const building = companies.find(building => building.id.toString() === id);
+    return building;
 };
 
 const deleteBuildingById = (id) => {
@@ -42,7 +35,7 @@ const deleteBuildingById = (id) => {
 
 module.exports = {
     getAllBuildings,
-    getBuildingsByCategory,
+    getBuildingsByAddress,
     getBuildingById,
     deleteBuildingById,
 };
