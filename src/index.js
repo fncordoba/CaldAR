@@ -51,7 +51,10 @@ app.get('/getCompaniesByBuildingId/:buildingId', (req, res) => {
 
 app.get('/removeCompanyById/:id', (req, res) => {
   const id = req.params.id;
-  res.send(companiesController.removeCopmanyById(id));
+  const result = companiesController.removeCopmanyById(id);
+  res.json({
+    msg: result
+  });
 });
 
 app.get("/getTechniciansById/:id", (req, res) => {
