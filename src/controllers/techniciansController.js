@@ -9,7 +9,16 @@ const getTechniciansById = id => {
     return technician;
 };
 
+const getTechniciansBy = (name, lastName) => {
+    const technician = technicians.filter(
+        technician => technician.name === name && 
+        technician.lastName === lastName
+        );
+    return technician;
+};
+
 module.exports = {
     getAllTechnicians,
-    getTechniciansById
+    getTechniciansById,
+    getTechniciansBy
 };

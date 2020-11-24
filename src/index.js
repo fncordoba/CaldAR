@@ -56,7 +56,7 @@ app.get('/getCompaniesByBuildingId/:buildingId', (req, res) => {
 app.get("/getTechniciansById/:id", (req, res) => {
   const id = req.params.id.toString();
   const technician = techniciansController.getTechniciansById(id);
-  if (!technician){
+  if (technician){
     res.json(technician);
   } else {
     res.send('No technician found with the Id: ' + id);
@@ -73,6 +73,13 @@ app.get("/getAllBoylerTypesById/:id", (req, res) => {
   const boylerTypesById = boylerTypesController.getBoylerTypeById(id);
   res.json(boylerTypesById);
 })
+
+app.get("/getTechniciansBy/:name/:lastName", (req, res) => {
+  const name = req.params.name;
+  const lastName = req.params.lastName;
+  const technician = techniciansController.getTechniciansBy(name, lastName);
+  res.json(technician);
+});
 
 app.listen(port, () => {
   console.log(`CaldAR app listening at http://localhost:${port}`);
