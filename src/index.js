@@ -47,6 +47,12 @@ app.get('/getCompanyById/:id', (req, res) => {
   }else res.json(company);
 });
 
+app.get('/getCompaniesByBuildingId/:buildingId', (req, res) => {
+  const buildingId = req.params.buildingId;
+  const companies = companiesController.getCompaniesByBuildingId(buildingId);
+  res.json(companies);
+});
+
 app.get("/getTechniciansById/:id", (req, res) => {
   const id = req.params.id.toString();
   const technician = techniciansController.getTechniciansById(id);

@@ -7,7 +7,13 @@ const getCompanyById = (id) => {
     return company;
 };
 
+const getCompaniesByBuildingId = (buildingId) => {
+    const companiesByBuildingId = companies.filter(company => company.buildings.includes(parseInt(buildingId)));
+    return companiesByBuildingId;
+};
+
 module.exports = {
     getAllCompanies,
-    getCompanyById
+    getCompanyById,
+    getCompaniesByBuildingId
 };
