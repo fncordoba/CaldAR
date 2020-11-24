@@ -16,15 +16,17 @@ app.get("/getAllTechnicians", (req, res) => {
 app.get("/getAllBoylerTypes", (req, res) => {
   const boylerTypes = boylerTypesController.getAllBoylerTypes();
   res.json(boylerTypes)
+});
+
 app.get("/getAllBuildings", (req, res) => {
     const buildings = buildingsController.getAllBuildings();
     res.json(buildings);
-  });
+});
 
 app.get("/getBuildingsByAddress/:address", (req, res) => {
     const address = req.params.address;
-    const BuildingsByAddress = BuildingsByAddress.getBuildingsByAddress(address);
-    res.json(BuildingsByAddress);
+    const buildingsByAddress = BuildingsByAddress.getBuildingsByAddress(address);
+    res.json(buildingsByAddress);
 });
 
 app.get("/getAllCompanies", (req, res) => {
@@ -85,6 +87,18 @@ app.get("/getTechniciansBy/:name/:lastName", (req, res) => {
   const lastName = req.params.lastName;
   const technician = techniciansController.getTechniciansBy(name, lastName);
   res.json(technician);
+});
+
+app.get("/getBuildingsById/:id", (req, res) => {
+    const id = req.params.id;
+    const building = buildingsController.getBuildingById(id);
+  if (building){
+    res.json(building);
+  } else {
+    res.send('No building found with the Id: ' + id);
+  }
+});
+
 app.get("/removeBuilding/:id", (req, res) => {
     const id = req.params.id;
     const buildings = buildingsController.deleteBuildingById(id);

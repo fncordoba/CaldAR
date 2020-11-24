@@ -5,9 +5,9 @@ const getAllBuildings = () => {
     return buildings;
 };
 
-const getBuildingsByAddress = (address, value) => {
+const getBuildingsByAddress = (address) => {
     return buildings.filter((building) => {
-        return building.address.toString() === value;
+        return building.address === address;
     });
 };
 
