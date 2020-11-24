@@ -31,7 +31,6 @@ const deleteBuildingById = (id) => {
     }
 
     return buildings;
-};
 
 module.exports = {
     getAllBuildings,

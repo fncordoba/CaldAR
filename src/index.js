@@ -29,6 +29,22 @@ app.get("/getBuildingsByAddress/:address", (req, res) => {
     res.json(buildingsByAddress);
 });
 
+app.get("/getBuildingsById/:id", (req, res) => {
+    const id = req.params.id;
+    const building = buildingsController.getBuildingById(id);
+  if (building){
+    res.json(building);
+  } else {
+    res.send('No building found with the Id: ' + id);
+  }
+});
+
+app.get("/removeBuilding/:id", (req, res) => {
+        const id = req.params.id;
+        const buildings = buildingsController.deleteBuildingById(id);
+        res.json(buildings);
+    });
+
 app.get("/getAllCompanies", (req, res) => {
   const companies = companiesController.getAllCompanies()
   res.json(companies);
@@ -62,7 +78,7 @@ app.get('/getCompaniesByBuildingId/:buildingId', (req, res) => {
 });
 
 app.get("/getTechniciansById/:id", (req, res) => {
-  const id = req.params.id.toString();
+  const id = req.params.id;
   const technician = techniciansController.getTechniciansById(id);
   if (technician){
     res.json(technician);
@@ -87,22 +103,6 @@ app.get("/getTechniciansBy/:name/:lastName", (req, res) => {
   const lastName = req.params.lastName;
   const technician = techniciansController.getTechniciansBy(name, lastName);
   res.json(technician);
-});
-
-app.get("/getBuildingsById/:id", (req, res) => {
-    const id = req.params.id;
-    const building = buildingsController.getBuildingById(id);
-  if (building){
-    res.json(building);
-  } else {
-    res.send('No building found with the Id: ' + id);
-  }
-});
-
-app.get("/removeBuilding/:id", (req, res) => {
-    const id = req.params.id;
-    const buildings = buildingsController.deleteBuildingById(id);
-    res.json(buildings);
 });
 
 app.listen(port, () => {
