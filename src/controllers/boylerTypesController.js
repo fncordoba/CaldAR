@@ -13,6 +13,7 @@ const getBoylerTypeById = id => {
 }
 
 const removeBoylerTypeById = id => {
+    const search = boylerTypes.find(boylerType => boylerType.id.toString() === id);
     const boylerTypeId = boylerTypes.filter(boylerType => !(boylerType.id.toString() === id));
     if (search) {
         fs.writeFileSync(
@@ -24,7 +25,7 @@ const removeBoylerTypeById = id => {
     } else{
         return `Boyler type with id ${id} not found`;
     }
-    };
+};
 
 module.exports = {
     getAllBoylerTypes,
