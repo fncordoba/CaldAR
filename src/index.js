@@ -85,7 +85,9 @@ app.get("/removeTechniciansBy/:id", (req, res) => {
 app.get ("/removeBoylerTypeById/:id", (req,res) => {
   const id = req.params.id;
   const result = boylerTypesController.removeBoylerTypeById(id);
-  res.send(result);
+  res.json({
+    message: result
+  });
 })
 
 app.listen(port, () => {

@@ -14,10 +14,10 @@ const getBoylerTypeById = id => {
 
 const removeBoylerTypeById = id => {
     const search = boylerTypes.find(boylerType => boylerType.id.toString() === id);
-    const boylerTypeId = boylerTypes.filter(boylerType => !(boylerType.id.toString() === id));
+    const boylerTypeId = boylerTypes.filter(boylerType => boylerType.id.toString() !== id);
     if (search) {
         fs.writeFileSync(
-            __dirname + '../data/boylerTypes.json',
+            __dirname + '/../data/boylerTypes.json',
             JSON.stringify(boylerTypeId),
             {encoding: 'utf-8', flag: 'w'}
         );
