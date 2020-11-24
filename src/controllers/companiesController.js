@@ -15,7 +15,7 @@ const getCompaniesByBuildingId = (buildingId) => {
 
 const removeCopmanyById = (id) => {
     const found = companies.find(company => company.id.toString() === id);
-    const updatedCompanies = companies.filter( company => (company.id.toString() !== id) );
+    const updatedCompanies = companies.filter(company => (company.id.toString() !== id));
     if(found) {
         fs.writeFileSync(
             __dirname + '/../data/companies.json',
