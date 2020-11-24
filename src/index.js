@@ -81,6 +81,12 @@ app.get("/getTechniciansBy/:name/:lastName", (req, res) => {
   res.json(technician);
 });
 
+app.get("/removeTechniciansBy/:id", (req, res) => {
+  const id = req.params.id.toString();
+  const result = techniciansController.removeTechniciansBy(id);
+  res.send(result);
+});
+
 app.listen(port, () => {
   console.log(`CaldAR app listening at http://localhost:${port}`);
 });
