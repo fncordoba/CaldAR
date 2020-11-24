@@ -1,4 +1,5 @@
 const boylerTypes = require('../data/boylerTypes.json');
+const fs = require('fs');
 
 const getAllBoylerTypes = () => boylerTypes;
 const getBoylerTypesByDescription = description => {
@@ -11,8 +12,24 @@ const getBoylerTypeById = id => {
     return boylerTypeById;
 }
 
+const removeBoylerTypeById = id => {
+    const search = boylerTypes.find(boylerType => boylerType.id.toString() === id);
+    const boylerTypeId = boylerTypes.filter(boylerType => boylerType.id.toString() !== id);
+    if (search) {
+        fs.writeFileSync(
+            __dirname + '/../data/boylerTypes.json',
+            JSON.stringify(boylerTypeId),
+            {encoding: 'utf-8', flag: 'w'}
+        );
+        return `Boyler type with id ${id} deleted`;
+    } else{
+        return `Boyler type with id ${id} not found`;
+    }
+};
+
 module.exports = {
     getAllBoylerTypes,
     getBoylerTypesByDescription,
-    getBoylerTypeById
+    getBoylerTypeById,
+    removeBoylerTypeById
 };

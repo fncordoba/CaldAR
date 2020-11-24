@@ -77,6 +77,14 @@ app.get('/getCompaniesByBuildingId/:buildingId', (req, res) => {
   res.json(companies);
 });
 
+app.get('/removeCompanyById/:id', (req, res) => {
+  const id = req.params.id;
+  const result = companiesController.removeCopmanyById(id);
+  res.json({
+    msg: result
+  });
+});
+
 app.get("/getTechniciansById/:id", (req, res) => {
   const id = req.params.id;
   const technician = techniciansController.getTechniciansById(id);
@@ -104,6 +112,20 @@ app.get("/getTechniciansBy/:name/:lastName", (req, res) => {
   const technician = techniciansController.getTechniciansBy(name, lastName);
   res.json(technician);
 });
+
+app.get("/removeTechniciansBy/:id", (req, res) => {
+  const id = req.params.id;
+  const result = techniciansController.removeTechniciansBy(id);
+  res.send(result);
+});
+
+app.get ("/removeBoylerTypeById/:id", (req,res) => {
+  const id = req.params.id;
+  const result = boylerTypesController.removeBoylerTypeById(id);
+  res.json({
+    message: result
+  });
+})
 
 app.listen(port, () => {
   console.log(`CaldAR app listening at http://localhost:${port}`);
