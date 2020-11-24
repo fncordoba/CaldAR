@@ -20,7 +20,7 @@ const getTechniciansBy = (name, lastName) => {
 
 const removeTechniciansBy = id => {
     const search = technicians.find(technician => technician.id.toString() === id);
-    const updatedTechnicians = technicians.find(technician => !(technician.id.toString() === id));
+    const updatedTechnicians = technicians.filter(technician => !(technician.id.toString() === id));
     if (search){
         fs.writeFileSync(
             __dirname + "/../data/technicians.json",
