@@ -64,6 +64,11 @@ app.get("/getBoylersByBuilding/:building", (req, res) => {
   res.json(boylersBuilding);
 });
 
+app.get("/getBoylersById/:id", (req, res) => {
+  const boylersId = boylersController.getBoylersById(req.params.id);
+  res.json(boylersId);
+});
+
 app.get("/getAllBoylerTypesById/:id", (req, res) => {
   const id = req.params.id;
   const boylerTypesById = boylerTypesController.getBoylerTypeById(id);

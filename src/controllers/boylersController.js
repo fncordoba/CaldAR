@@ -11,7 +11,15 @@ const getBoylersByBuilding = (building) => {
     return boylersByBuilding;
 };
 
+const getBoylersById = (id) => {
+    const boylersById = boylers.filter(boylers => {
+        boylers.id === parseInt(id);
+    })
+    return boylersById;
+};
+
 module.exports = {
     getAllBoylers,
-    getBoylersByBuilding
+    getBoylersByBuilding,
+    getBoylersById
 };
