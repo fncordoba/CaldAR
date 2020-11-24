@@ -52,7 +52,7 @@ app.get('/getCompaniesByBuildingId/:buildingId', (req, res) => {
 app.get("/getTechniciansById/:id", (req, res) => {
   const id = req.params.id.toString();
   const technician = techniciansController.getTechniciansById(id);
-  if (!technician){
+  if (technician){
     res.json(technician);
   } else {
     res.send('No technician found with the Id: ' + id);
@@ -71,10 +71,13 @@ app.get("/getAllBoylerTypesById/:id", (req, res) => {
 })
 
 app.get("/getTechniciansBy/:name/:lastName", (req, res) => {
-  const name = String(req.params.name);
-  const lastName = String(req.params.lastName);
+  const name = req.params.name.toString();
+  const lastName = req.params.lastName.toString();
   const technician = techniciansController.getTechniciansBy(name, lastName);
-  res.json(technician);
+  if (!technician.length==0){
+    res.json(technician);
+  }
+    res.send('No technician found with the name: ' + name + ' ' + lastName);
 });
 
 app.listen(port, () => {
