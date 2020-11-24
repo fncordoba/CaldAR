@@ -27,14 +27,10 @@ app.get("/getAllBoylers", (req, res) => {
   res.json(boylers);
 });
 
-app.get("/getTechniciansById/:id", (req, res) => {
-  const id = req.params.id.toString();
-  const technician = techniciansController.getTechniciansById(id);
-  if (technician){
-    res.json(technician);
-  } else {
-    res.send('No technician found with the Id: ' + id);
-  }
+app.get("/getAllBoylerTypesByDescription/:description", (req, res) => {
+  const description = req.params.description;
+  const boylerTyperByDescription = boylerTypesController.getBoylerTypesByDescription(description);
+  res.json(boylerTyperByDescription);
 });
 
 app.get('/getCompanyById/:id', (req, res) => {
@@ -54,7 +50,7 @@ app.get('/getCompaniesByBuildingId/:buildingId', (req, res) => {
 });
 
 app.get("/getTechniciansById/:id", (req, res) => {
-  const id = req.params.id.toString();
+  const id = req.params.id;
   const technician = techniciansController.getTechniciansById(id);
   if (technician){
     res.json(technician);
@@ -82,7 +78,7 @@ app.get("/getTechniciansBy/:name/:lastName", (req, res) => {
 });
 
 app.get("/removeTechniciansBy/:id", (req, res) => {
-  const id = req.params.id.toString();
+  const id = req.params.id;
   const result = techniciansController.removeTechniciansBy(id);
   res.send(result);
 });

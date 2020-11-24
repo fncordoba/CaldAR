@@ -27,9 +27,9 @@ const removeTechniciansBy = id => {
             JSON.stringify(updatedTechnicians),
             { encoding: 'utf8', flag: 'w' }
         );
-        return ("Technician with id " + id + " deleted.").toString();
+        return `Technician with id ${id} deleted`;
     } else {
-        return ("Technician with id " + id + " not found.").toString();
+        return `Technician with id ${id} not found.`;
     }
 };
 
