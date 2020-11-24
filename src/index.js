@@ -25,7 +25,7 @@ app.get("/getAllBuildings", (req, res) => {
 
 app.get("/getBuildingsByAddress/:address", (req, res) => {
     const address = req.params.address;
-    const buildingsByAddress = BuildingsByAddress.getBuildingsByAddress(address);
+    const buildingsByAddress = buildingsController.getBuildingsByAddress(address);
     res.json(buildingsByAddress);
 });
 
