@@ -40,10 +40,10 @@ app.get("/getBuildingsById/:id", (req, res) => {
 });
 
 app.get("/removeBuilding/:id", (req, res) => {
-        const id = req.params.id;
-        const buildings = buildingsController.deleteBuildingById(id);
-        res.json(buildings);
-    });
+  const id = req.params.id;
+  const buildings = buildingsController.deleteBuildingById(id);
+  res.json(buildings);
+});
 
 app.get("/getAllCompanies", (req, res) => {
   const companies = companiesController.getAllCompanies()
@@ -68,7 +68,7 @@ app.get('/getCompanyById/:id', (req, res) => {
     res.json({
       msg : 'Company not found'
     })
-  }else res.json(company);
+  }else {res.json(company)};
 });
 
 app.get('/getCompaniesByBuildingId/:buildingId', (req, res) => {
@@ -131,6 +131,14 @@ app.get ("/removeBoylerTypeById/:id", (req,res) => {
     message: result
   });
 })
+
+app.get ("/removeBoylerById/:id", (req,res) => {
+  const id = req.params.id;
+  const result = boylersController.removeBoylerById(id);
+  res.json({
+    message: result
+  });
+});
 
 app.listen(port, () => {
   console.log(`CaldAR app listening at http://localhost:${port}`);
