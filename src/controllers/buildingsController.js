@@ -1,41 +1,29 @@
-let buildings = require ("../data/buildings.json");
-const fs = require("fs");
+const fs = require('fs');
+let buildings = require('../data/buildings.json');
 
-const getAllBuildings = () => {
-    return buildings;
+const getAllBuildings = () => buildings;
+
+const getBuildingsByAddress = address => buildings.filter(building => building.address === address);
+
+const getBuildingById = id => {
+  const building = buildings.find(buildingItem => buildingItem.id.toString() === id);
+  return building;
 };
 
-const getBuildingsByAddress = (address) => {
-    return buildings.filter((building) => {
-        return building.address === address;
-    });
-};
+const deleteBuildingById = id => {
+  buildings = buildings.filter(building => building.id.toString() !== id);
+  fs.writeFileSync(
+    `${__dirname}/../data/buildings.json`,
+    JSON.stringify(buildings),
+    { encoding: 'utf8', flag: 'w' },
+  );
 
-const getBuildingById = (id) => {
-    const building = companies.find(building => building.id.toString() === id);
-    return building;
-};
-
-const deleteBuildingById = (id) => {
-    buildings = buildings.filter((building) => {
-        return building.id.toString() !== id;
-    });
-    try {
-        fs.writeFileSync(
-            __dirname + "/../data/buildings.json",
-            JSON.stringify(buildings),
-            { encoding: 'utf8', flag: 'w' }
-        );
-    } catch (err) {
-        throw err;
-    }
-
-    return buildings;
+  return buildings;
 };
 
 module.exports = {
-    getAllBuildings,
-    getBuildingsByAddress,
-    getBuildingById,
-    deleteBuildingById,
+  getAllBuildings,
+  getBuildingsByAddress,
+  getBuildingById,
+  deleteBuildingById,
 };
