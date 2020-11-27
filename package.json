@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/fncordoba/CaldAR#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.15"
   },
   "devDependencies": {
     "eslint": "^7.14.0",
