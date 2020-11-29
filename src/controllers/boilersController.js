@@ -2,7 +2,7 @@ const fs = require('fs');
 const models = require('../models');
 const boilers = require('../data/boilers.json');
 
-const getAllBoilers = async (req, res) => {
+const findAll = async (req, res) => {
   try {
     const boilersResult = await models.boilers.find({});
 
@@ -43,7 +43,7 @@ const removeBoilerById = id => {
 };
 
 module.exports = {
-  getAllBoilers,
+  findAll,
   getBoilersByBuilding,
   getBoilersById,
   removeBoilerById
