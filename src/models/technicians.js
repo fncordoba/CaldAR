@@ -39,7 +39,6 @@ const techniciansSchema = mongoose.Schema({
     required: true
   }
 },
-
 {
   timestamps: true
 });
