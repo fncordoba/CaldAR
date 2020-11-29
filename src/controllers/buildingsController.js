@@ -1,7 +1,17 @@
 const fs = require('fs');
+const models = require('../models');
 let buildings = require('../data/buildings.json');
 
-const getAllBuildings = () => buildings;
+const getAllBuildings = async (req, res) => {
+  try {
+    const buildingsFromDB = await models.building.find({});
+    res.status(200).json(buildingsFromDB);
+  } catch (error) {
+    res.status(500).json({
+      msg: 'Error ! Couldn\'t find all the buildings'
+    });
+  }
+};
 
 const getBuildingsByAddress = address => buildings.filter(building => building.address === address);
 

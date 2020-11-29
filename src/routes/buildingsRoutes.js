@@ -1,11 +1,8 @@
 const express = require('express');
+const buildingController = require('../controllers/buildingsController');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.json({
-    msg: 'the router is working!',
-  });
-});
+router.get('/', buildingController.getAllBuildings);
 
 module.exports = router;
