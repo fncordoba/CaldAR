@@ -7,7 +7,7 @@ const router = require('./routes');
 const techniciansController = require('./controllers/techniciansController');
 const boylerTypesController = require('./controllers/boylerTypesController');
 const companiesController = require('./controllers/companiesController');
-const boylersController = require('./controllers/boylersController');
+const boilersController = require('./controllers/boilersController');
 const buildingsController = require('./controllers/buildingsController');
 
 dotenv.config();
@@ -59,9 +59,9 @@ app.get('/getAllCompanies', (req, res) => {
   res.json(companies);
 });
 
-app.get('/getAllBoylers', (req, res) => {
-  const boylers = boylersController.getAllBoylers();
-  res.json(boylers);
+app.get('/getAllBoilers', (req, res) => {
+  const boilers = boilersController.getAllBoilers();
+  res.json(boilers);
 });
 
 app.get('/getAllBoylerTypesByDescription/:description', (req, res) => {
@@ -106,14 +106,14 @@ app.get('/getTechniciansById/:id', (req, res) => {
   }
 });
 
-app.get('/getBoylersByBuilding/:building', (req, res) => {
-  const boylersBuilding = boylersController.getBoylersByBuilding(req.params.building);
-  res.json(boylersBuilding);
+app.get('/getBoilersByBuilding/:building', (req, res) => {
+  const boilersBuilding = boilersController.getBoilersByBuilding(req.params.building);
+  res.json(boilersBuilding);
 });
 
-app.get('/getBoylersById/:id', (req, res) => {
-  const boylersId = boylersController.getBoylersById(req.params.id);
-  res.json(boylersId);
+app.get('/getBoilersById/:id', (req, res) => {
+  const boilersId = boilersController.getBoilersById(req.params.id);
+  res.json(boilersId);
 });
 
 app.get('/getAllBoylerTypesById/:id', (req, res) => {
@@ -143,9 +143,9 @@ app.get('/removeBoylerTypeById/:id', (req, res) => {
   });
 });
 
-app.get('/removeBoylerById/:id', (req, res) => {
+app.get('/removeBoilerById/:id', (req, res) => {
   const { id } = req.params;
-  const result = boylersController.removeBoylerById(id);
+  const result = boilersController.removeBoilerById(id);
   res.json({
     message: result,
   });
