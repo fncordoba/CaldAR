@@ -17,8 +17,9 @@ const techniciansSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    boilerType: {
-        type: Number,
+    boilerTypes:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'boilerTypes',
         required: true
     },
     email: {

@@ -8,7 +8,6 @@ const techniciansController = require('./controllers/techniciansController');
 const boylerTypesController = require('./controllers/boylerTypesController');
 const companiesController = require('./controllers/companiesController');
 const buildingsController = require('./controllers/buildingsController');
-const technicians = require('./technicians');
 
 dotenv.config();
 const app = express();
@@ -135,10 +134,6 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 }).catch((error) => {
   console.log('Cannot connect to the database.', error);
 });
-
-module.exports = {
-  technicians,
-};
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
