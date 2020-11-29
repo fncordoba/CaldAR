@@ -9,34 +9,13 @@
 			"name": "Boilers",
 			"item": [
 				{
-					"name": "getAllBoilers",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "http://localhost:3000/boilers",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:3000/getAllBoilers",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"getAllBoilers"
-							]
-						},
-						"description": "Gets all the boilers on the .json file."
+							"raw": ""
+						}
 					},
 					"response": []
 				}
