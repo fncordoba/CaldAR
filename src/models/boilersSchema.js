@@ -7,8 +7,8 @@ const boilersSchema = mongoose.Schema(
       required: true
     },
     boilerType: {
-      type: String,
-      required: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'boilerTypes'
     },
     hourMaintenanceCost: {
       type: Number,

@@ -7,7 +7,6 @@ const router = require('./routes');
 const techniciansController = require('./controllers/techniciansController');
 const boylerTypesController = require('./controllers/boylerTypesController');
 const companiesController = require('./controllers/companiesController');
-const boilersController = require('./controllers/boilersController');
 const buildingsController = require('./controllers/buildingsController');
 
 dotenv.config();
@@ -59,11 +58,6 @@ app.get('/getAllCompanies', (req, res) => {
   res.json(companies);
 });
 
-app.get('/getAllBoilers', (req, res) => {
-  const boilers = boilersController.getAllBoilers();
-  res.json(boilers);
-});
-
 app.get('/getAllBoylerTypesByDescription/:description', (req, res) => {
   const { description } = req.params;
   const boylerTyperByDescription = boylerTypesController.getBoylerTypesByDescription(description);
@@ -106,16 +100,6 @@ app.get('/getTechniciansById/:id', (req, res) => {
   }
 });
 
-app.get('/getBoilersByBuilding/:building', (req, res) => {
-  const boilersBuilding = boilersController.getBoilersByBuilding(req.params.building);
-  res.json(boilersBuilding);
-});
-
-app.get('/getBoilersById/:id', (req, res) => {
-  const boilersId = boilersController.getBoilersById(req.params.id);
-  res.json(boilersId);
-});
-
 app.get('/getAllBoylerTypesById/:id', (req, res) => {
   const { id } = req.params;
   const boylerTypesById = boylerTypesController.getBoylerTypeById(id);
@@ -138,14 +122,6 @@ app.get('/removeTechniciansBy/:id', (req, res) => {
 app.get('/removeBoylerTypeById/:id', (req, res) => {
   const { id } = req.params;
   const result = boylerTypesController.removeBoylerTypeById(id);
-  res.json({
-    message: result,
-  });
-});
-
-app.get('/removeBoilerById/:id', (req, res) => {
-  const { id } = req.params;
-  const result = boilersController.removeBoilerById(id);
   res.json({
     message: result,
   });
