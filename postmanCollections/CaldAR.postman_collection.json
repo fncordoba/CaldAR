@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "47a376e7-34a2-423f-a755-85e7e591c561",
+		"_postman_id": "84e83056-ca6e-41bf-81be-b600118c3ee3",
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -10,6 +10,23 @@
 			"item": [
 				{
 					"name": "http://localhost:3000/boilers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Buildings",
+			"item": [
+				{
+					"name": "http://localhost:3000/buildings",
 					"request": {
 						"method": "GET",
 						"header": [],
