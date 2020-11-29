@@ -7,9 +7,6 @@ const boilersSchema = mongoose.Schema(
       required: true
     },
     boilerType: {
-      // type: mongoose.Schema.Types.ObjectId,
-      // ref: "boilerTypes",
-      // required: true
       type: String,
       required: true
     },
