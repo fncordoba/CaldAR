@@ -12,6 +12,9 @@ router.get('/:id', buildingController.findById);
 // CREATE BUILDING
 router.post('/', buildingController.createBuilding);
 
+// UPDATING BUILDINGS BY ID
+router.put('/:id', buildingController.updateBuilding);
+
 // DELETE BUILDINGS BY ID
 router.delete('/:id', buildingController.deleteBuilding);
 

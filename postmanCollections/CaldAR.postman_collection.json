@@ -103,6 +103,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "http://localhost:3000/buildings/5fc451e68cc2c50bea78d9b9",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"boilers\": [\r\n        \"507f1f77bcf86cd799439011\"\r\n    ],\r\n    \"name\": \"mockBuilding\",\r\n    \"address\": \"Montevideo 666\",\r\n    \"company\": \"507f1f77bcf86cd799439011\",\r\n    \"phone\": \"888-999-999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/buildings/5fc451e68cc2c50bea78d9b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"buildings",
+								"5fc451e68cc2c50bea78d9b9"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
