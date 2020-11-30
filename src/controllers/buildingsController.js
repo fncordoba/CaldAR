@@ -65,27 +65,15 @@ const deleteBuilding = async (req, res) => {
 
 const updateBuilding = async (req, res) => {
   const { id } = req.params;
-  if (!req.body) {
-    return res.status(500).json({
-      msg: 'Missing data'
-    });
-  }
   if (!req.body.name || !req.body.phone || !req.body.address || !req.body.boilers) {
     return res.status(500).json({
       msg: 'Missing required fields to create a building'
     });
   }
-  const update = {
-    name: req.body.name,
-    phone: req.body.phone,
-    address: req.body.address,
-    company: req.body.company,
-    boilers: req.body.boilers,
-  };
   try {
-    const result = await models.Building.findByIdAndUpdate(id, update);
+    const result = await models.Building.findByIdAndUpdate(id, req.body, { new: true, });
     return res.status(200).json({
-      msg: 'Object updated succesfully',
+      msg: 'Updated building below',
       result
     });
   } catch (error) {
