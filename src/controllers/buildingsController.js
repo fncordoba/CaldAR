@@ -27,11 +27,11 @@ const createBuilding = async (req, res) => {
   });
   try {
     const result = await building.save();
-    return res.status(200).send(result);
+    return res.status(200).json(result);
   } catch (error) {
     // Error
     return res.status(500).json({
-      msg: 'Error'
+      msg: 'An error appeared while registering a new building',
     });
   }
 };
