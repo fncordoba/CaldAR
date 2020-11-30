@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "84e83056-ca6e-41bf-81be-b600118c3ee3",
+		"_postman_id": "e54ff561-818c-42d4-ab64-d3accf56a1e4",
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -128,6 +128,30 @@
 							"path": [
 								"buildings",
 								"5fc451e68cc2c50bea78d9b9"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Technicians",
+			"item": [
+				{
+					"name": "Get all technicians",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/technicians",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians"
 							]
 						}
 					},
