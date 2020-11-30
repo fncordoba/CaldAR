@@ -39,7 +39,7 @@ const createBuilding = async (req, res) => {
 const findById = async (req, res) => {
   const { id } = req.params;
   try {
-    const buildingsFromDB = await models.Building.find({ _id: id });
+    const buildingsFromDB = await models.Building.findById(id);
     res.status(200).json(buildingsFromDB);
   } catch (error) {
     res.status(500).json({
