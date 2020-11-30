@@ -21,7 +21,7 @@ const createBuilding = async (req, res) => {
   const building = new models.Building({
     name: req.body.name,
     address: req.body.address,
-    company: req.body.company || 'none',
+    company: req.body.company,
     phone: req.body.phone,
     boilers: req.body.boilers,
   });
