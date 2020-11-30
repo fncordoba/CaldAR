@@ -9,7 +9,7 @@
 			"name": "Boilers",
 			"item": [
 				{
-					"name": "FindAllBoilers",
+					"name": "findAllBoilers",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -45,6 +45,52 @@
 							]
 						},
 						"description": "Create a new boiler and save it in the DB."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "buildings",
+			"item": [
+				{
+					"name": "findAllBuildings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/buildings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"buildings"
+							]
+						},
+						"description": "Find all the buildings in the DB."
+					},
+					"response": []
+				},
+				{
+					"name": "createNewBuilding",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/buildings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"buildings"
+							]
+						},
+						"description": "Request to create and save a new building into the DB."
 					},
 					"response": []
 				}
