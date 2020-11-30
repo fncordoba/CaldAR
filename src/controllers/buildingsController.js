@@ -89,7 +89,6 @@ const updateBuilding = async (req, res) => {
       result
     });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({
       msg: 'An error appeared while updating the building',
     });
