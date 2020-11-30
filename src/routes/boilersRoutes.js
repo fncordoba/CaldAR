@@ -3,6 +3,7 @@ const boilersController = require('../controllers/boilersController');
 
 const router = express.Router();
 
-router.get('/', boilersController.findAll);
+router.get('/', boilersController.findAllBoilers);
+router.post('/', boilersController.createBoiler);
 
 module.exports = router;
