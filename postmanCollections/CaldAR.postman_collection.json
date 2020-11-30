@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "47a376e7-34a2-423f-a755-85e7e591c561",
+		"_postman_id": "c86492c7-0aeb-4462-90f9-32f79126b3e5",
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -274,12 +274,36 @@
 		},
 		{
 			"name": "Companies",
-			"item": [],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Appoinments",
-			"item": [],
+			"item": [
+				{
+					"name": "createCompanies",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Mauricio\",\r\n    \"address\":\"Viamonte 028910\",\r\n    \"cuit\":\"0258963\",\r\n    \"phone\":\"123698547\",\r\n    \"email\":\"mauricio@rr.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		}
 	],
