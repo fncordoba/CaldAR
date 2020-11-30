@@ -2,7 +2,7 @@ const models = require('../models');
 
 const getAllBuildings = async (req, res) => {
   try {
-    const buildingsFromDB = await models.building.find({});
+    const buildingsFromDB = await models.Building.find({});
     res.status(200).json(buildingsFromDB);
   } catch (error) {
     res.status(500).json({
@@ -20,16 +20,17 @@ const createBuilding = async (req, res) => {
 
   const building = new models.Building({
     name: req.body.name,
-    address: req.body.addres,
+    address: req.body.address,
     company: req.body.company || 'none',
     phone: req.body.phone,
     boilers: req.body.boilers,
   });
   try {
-    const result = building.save();
+    const result = await building.save();
     return res.status(200).send(result);
   } catch (error) {
     // Error
+    console.log(error);
     return res.status(500).json({
       msg: 'Error'
     });
