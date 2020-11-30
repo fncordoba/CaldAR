@@ -1,6 +1,10 @@
 {
 	"info": {
+<<<<<<< HEAD
 		"_postman_id": "c86492c7-0aeb-4462-90f9-32f79126b3e5",
+=======
+		"_postman_id": "6af69b4e-6dbc-4932-b8c7-87cc569c3c42",
+>>>>>>> fe6187a (feautre-69: Add create function for appointments)
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -274,15 +278,50 @@
 		},
 		{
 			"name": "Companies",
+<<<<<<< HEAD
 			"item": [
 				{
 					"name": "createCompanies",
+=======
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Appoinments",
+			"item": [
+				{
+					"name": "http://localhost:3000/appointments/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/appointments/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/appointments/",
+>>>>>>> fe6187a (feautre-69: Add create function for appointments)
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
+<<<<<<< HEAD
 							"raw": "{\r\n    \"name\":\"Mauricio\",\r\n    \"address\":\"Viamonte 028910\",\r\n    \"cuit\":\"0258963\",\r\n    \"phone\":\"123698547\",\r\n    \"email\":\"mauricio@rr.com\"\r\n}",
+=======
+							"raw": "{\r\n    \"building\": \"5fc451e68cc2c50bea78d9b9\",\r\n    \"boiler\": \"507f1f77bcf86cd799439011\",\r\n    \"type\": \"eventual\",\r\n    \"technician\": \"507f1f77bcf86cd799439011\",\r\n    \"monthlyHours\": \"11\"\r\n}",
+>>>>>>> fe6187a (feautre-69: Add create function for appointments)
 							"options": {
 								"raw": {
 									"language": "json"
@@ -290,14 +329,23 @@
 							}
 						},
 						"url": {
+<<<<<<< HEAD
 							"raw": "http://localhost:3000/companies",
+=======
+							"raw": "http://localhost:3000/appointments/",
+>>>>>>> fe6187a (feautre-69: Add create function for appointments)
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+<<<<<<< HEAD
 								"companies"
+=======
+								"appointments",
+								""
+>>>>>>> fe6187a (feautre-69: Add create function for appointments)
 							]
 						}
 					},
