@@ -8,7 +8,7 @@ const createCompany = async (req, res) => {
     });
   }
 
-  const company = new models.companies({
+  const company = new models.Companies({
     name: req.body.name,
     address: req.body.address,
     cuit: req.body.cuit,

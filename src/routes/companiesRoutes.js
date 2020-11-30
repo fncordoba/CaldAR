@@ -3,7 +3,7 @@ const companiesController = require('../controllers/companiesController');
 
 const router = express.Router();
 
-// CREATE BUILDING
+// CREATE COMPANY
 router.post('/', companiesController.createCompany);
 
 module.exports = router;

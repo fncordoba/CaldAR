@@ -1,6 +1,6 @@
 const Building = require('./buildings');
 const Boilers = require('./boilersSchema');
-const companies = require('./companiesSchema');
+const Companies = require('./companiesSchema');
 const technicians = require('./technicians');
 const appointments = require('./appointmentsSchema');
 const boilerTypes = require('./boilerTypesSchema');
@@ -8,7 +8,7 @@ const boilerTypes = require('./boilerTypesSchema');
 module.exports = {
   Building,
   Boilers,
-  companies,
+  Companies,
   technicians,
   appointments,
   boilerTypes,
