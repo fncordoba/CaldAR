@@ -1,10 +1,6 @@
 {
 	"info": {
-<<<<<<< HEAD
-		"_postman_id": "e54ff561-818c-42d4-ab64-d3accf56a1e4",
-=======
 		"_postman_id": "47a376e7-34a2-423f-a755-85e7e591c561",
->>>>>>> f1b55c9... findBoilerById function added. postmanCollections updated with the buildings, boilers and boilerTypes requests
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -187,11 +183,6 @@
 		},
 		{
 			"name": "Technicians",
-<<<<<<< HEAD
-			"item": [
-				{
-					"name": "Get all technicians",
-=======
 			"item": [],
 			"protocolProfileBehavior": {}
 		},
@@ -200,39 +191,26 @@
 			"item": [
 				{
 					"name": "findAllBoilerTypes",
->>>>>>> f1b55c9... findBoilerById function added. postmanCollections updated with the buildings, boilers and boilerTypes requests
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-<<<<<<< HEAD
-							"raw": "localhost:3000/technicians",
-=======
 							"raw": "http://localhost:3000/boilerTypes",
 							"protocol": "http",
->>>>>>> f1b55c9... findBoilerById function added. postmanCollections updated with the buildings, boilers and boilerTypes requests
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-<<<<<<< HEAD
-								"technicians"
-							]
-						}
-=======
 								"boilerTypes"
 							]
 						},
 						"description": "Find all the boilers types in the DB."
->>>>>>> f1b55c9... findBoilerById function added. postmanCollections updated with the buildings, boilers and boilerTypes requests
 					},
 					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
-<<<<<<< HEAD
-=======
 		},
 		{
 			"name": "Companies",
@@ -243,7 +221,6 @@
 			"name": "Appoinments",
 			"item": [],
 			"protocolProfileBehavior": {}
->>>>>>> f1b55c9... findBoilerById function added. postmanCollections updated with the buildings, boilers and boilerTypes requests
 		}
 	],
 	"protocolProfileBehavior": {}
