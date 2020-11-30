@@ -1,7 +1,18 @@
 const fs = require('fs');
+const models = require('../models');
 const boilerTypes = require('../data/boilerTypes.json');
 
-const getAllBoilerTypes = () => boilerTypes;
+const getAllBoilerTypes = async (req, res) => {
+  try {
+    const boilerTypesResult = await models.boilerTypes.find({});
+
+    res.status(200).json(boilerTypesResult);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error. Can't get all the boilers Types.",
+    });
+  }
+};
 
 const getBoilerTypesByDescription = (description) => {
   const boilerTypesByDescription = boilerTypes.filter(
