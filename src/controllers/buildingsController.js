@@ -30,7 +30,6 @@ const createBuilding = async (req, res) => {
     return res.status(200).send(result);
   } catch (error) {
     // Error
-    console.log(error);
     return res.status(500).json({
       msg: 'Error'
     });
