@@ -48,8 +48,24 @@ const findById = async (req, res) => {
   }
 };
 
+const findAndDelete = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await models.Building.findByIdAndDelete(id);
+    res.status(200).json({
+      msg: 'The next building been deleted succesfully',
+      result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      msg: 'An error appeared while deleting the building',
+    });
+  }
+};
+
 module.exports = {
   getAllBuildings,
   createBuilding,
   findById,
+  findAndDelete,
 };

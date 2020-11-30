@@ -12,4 +12,7 @@ router.get('/:id', buildingController.findById);
 // CREATE BUILDING
 router.post('/', buildingController.createBuilding);
 
+// DELETE BUILDINGS BY ID
+router.delete('/:id', buildingController.findAndDelete);
+
 module.exports = router;
