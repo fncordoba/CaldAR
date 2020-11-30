@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "47a376e7-34a2-423f-a755-85e7e591c561",
+		"_postman_id": "84e83056-ca6e-41bf-81be-b600118c3ee3",
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,42 +9,13 @@
 			"name": "Boilers",
 			"item": [
 				{
-					"name": "findAllBoilers",
+					"name": "http://localhost:3000/boilers",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/boilers",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"boilers"
-							]
-						},
-						"description": "Search all the boilers in the DB."
-					},
-					"response": []
-				},
-				{
-					"name": "createNewBoiler",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/boilers",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"boilers"
-							]
-						},
-						"description": "Create a new boiler and save it in the DB."
+							"raw": ""
+						}
 					},
 					"response": []
 				}
@@ -52,33 +23,33 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "buildings",
+			"name": "Buildings",
 			"item": [
 				{
-					"name": "findAllBuildings",
+					"name": "Get all Buildings",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/buildings",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"buildings"
-							]
-						},
-						"description": "Find all the buildings in the DB."
+							"raw": ""
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "createNewBuilding",
+					"name": "http://localhost:3000/buildings",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"mockBuilding\",\r\n    \"address\": \"Another test 778\",\r\n    \"phone\": \"888-999-888\",\r\n    \"company\": \"507f1f77bcf86cd799439011\",\r\n    \"boilers\": [\"507f1f77bcf86cd799439011\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/buildings",
 							"protocol": "http",
@@ -89,8 +60,47 @@
 							"path": [
 								"buildings"
 							]
-						},
-						"description": "Request to create and save a new building into the DB."
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/buildings/5fc455151c752343b2f84350",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/buildings/5fc455151c752343b2f84350",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"buildings",
+								"5fc455151c752343b2f84350"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/buildings/5fc50dbe471effeef47f49b1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/buildings/5fc50dbe471effeef47f49b1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"buildings",
+								"5fc50dbe471effeef47f49b1"
+							]
+						}
 					},
 					"response": []
 				}

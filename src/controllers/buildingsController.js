@@ -48,7 +48,7 @@ const findById = async (req, res) => {
   }
 };
 
-const findAndDelete = async (req, res) => {
+const deleteBuilding = async (req, res) => {
   const { id } = req.params;
   try {
     const result = await models.Building.findByIdAndDelete(id);
@@ -67,5 +67,5 @@ module.exports = {
   getAllBuildings,
   createBuilding,
   findById,
-  findAndDelete,
+  deleteBuilding,
 };

@@ -13,6 +13,6 @@ router.get('/:id', buildingController.findById);
 router.post('/', buildingController.createBuilding);
 
 // DELETE BUILDINGS BY ID
-router.delete('/:id', buildingController.findAndDelete);
+router.delete('/:id', buildingController.deleteBuilding);
 
 module.exports = router;
