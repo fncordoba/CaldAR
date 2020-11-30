@@ -1,37 +1,31 @@
-const fs = require('fs');
-const companies = require('../data/companies.json');
+const models = require('../models');
 
-const getAllCompanies = () => companies;
-
-const getCompanyById = id => {
-  const company = companies.find(companyItem => companyItem.id.toString() === id);
-  return company;
-};
-
-const getCompaniesByBuildingId = buildingId => {
-  const companiesByBuildingId = companies.filter(
-    company => company.buildings.includes(parseInt(buildingId, 10))
-  );
-  return companiesByBuildingId;
-};
-
-const removeCopmanyById = id => {
-  const found = companies.find(company => company.id.toString() === id);
-  const updatedCompanies = companies.filter(company => company.id.toString() !== id);
-  if (found) {
-    fs.writeFileSync(
-      `${__dirname}/../data/companies.json`,
-      JSON.stringify(updatedCompanies),
-      { encoding: 'utf8', flag: 'w' },
-    );
-    return `Company with id of ${id} deleted`;
+const createCompany = async (req, res) => {
+  // eslint-disable-next-line max-len
+  if (!req.body.name || !req.body.phone || !req.body.address || !req.body.cuit || !req.body.email) {
+    return res.status(500).json({
+      msg: 'Missing required fields to create a company'
+    });
   }
-  return `Company with id of ${id} not found`;
+
+  const company = new models.companies({
+    name: req.body.name,
+    address: req.body.address,
+    cuit: req.body.cuit,
+    phone: req.body.phone,
+    email: req.body.email,
+  });
+  try {
+    const result = await company.save();
+    return res.status(200).json(result);
+  } catch (error) {
+    // Error
+    return res.status(500).json({
+      msg: 'An error appeared while registering a new company',
+    });
+  }
 };
 
 module.exports = {
-  getAllCompanies,
-  getCompanyById,
-  getCompaniesByBuildingId,
-  removeCopmanyById,
+  createCompany
 };
