@@ -36,7 +36,20 @@ const createBuilding = async (req, res) => {
   }
 };
 
+const findById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const buildingsFromDB = await models.Building.find({ _id: id });
+    res.status(200).json(buildingsFromDB);
+  } catch (error) {
+    res.status(500).json({
+      msg: `There is no building with if of ${id}`
+    });
+  }
+};
+
 module.exports = {
   getAllBuildings,
   createBuilding,
+  findById,
 };
