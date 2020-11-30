@@ -1,6 +1,10 @@
 {
 	"info": {
+<<<<<<< HEAD
 		"_postman_id": "e54ff561-818c-42d4-ab64-d3accf56a1e4",
+=======
+		"_postman_id": "47a376e7-34a2-423f-a755-85e7e591c561",
+>>>>>>> f1b55c9... findBoilerById function added. postmanCollections updated with the buildings, boilers and boilerTypes requests
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,13 +13,63 @@
 			"name": "Boilers",
 			"item": [
 				{
-					"name": "http://localhost:3000/boilers",
+					"name": "findAllBoilers",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
-						}
+							"raw": "http://localhost:3000/boilers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilers"
+							]
+						},
+						"description": "Search all the boilers in the DB."
+					},
+					"response": []
+				},
+				{
+					"name": "createNewBoiler",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/boilers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilers"
+							]
+						},
+						"description": "Create a new boiler and save it in the DB."
+					},
+					"response": []
+				},
+				{
+					"name": "findBoilerById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/boilers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilers",
+								""
+							]
+						},
+						"description": "Request to find a boiler in the DB by id."
 					},
 					"response": []
 				}
@@ -26,30 +80,10 @@
 			"name": "Buildings",
 			"item": [
 				{
-					"name": "Get all Buildings",
+					"name": "findAllBuildings",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3000/buildings",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"mockBuilding\",\r\n    \"address\": \"Another test 778\",\r\n    \"phone\": \"888-999-888\",\r\n    \"company\": \"507f1f77bcf86cd799439011\",\r\n    \"boilers\": [\"507f1f77bcf86cd799439011\"]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://localhost:3000/buildings",
 							"protocol": "http",
@@ -60,17 +94,38 @@
 							"path": [
 								"buildings"
 							]
-						}
+						},
+						"description": "Find all the buildings in the DB."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/buildings/5fc455151c752343b2f84350",
+					"name": "createNewBuilding",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/buildings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"buildings"
+							]
+						},
+						"description": "Request to create and save a new building into the DB."
+					},
+					"response": []
+				},
+				{
+					"name": "findBuildingById",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/buildings/5fc455151c752343b2f84350",
+							"raw": "http://localhost:3000/buildings/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -78,19 +133,41 @@
 							"port": "3000",
 							"path": [
 								"buildings",
-								"5fc455151c752343b2f84350"
+								""
 							]
-						}
+						},
+						"description": "Find a building in the DB by id."
 					},
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/buildings/5fc50dbe471effeef47f49b1",
+					"name": "updateBuilding",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/buildings/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"buildings",
+								""
+							]
+						},
+						"description": "Request to update a building by the id."
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBuilding",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/buildings/5fc50dbe471effeef47f49b1",
+							"raw": "http://localhost:3000/buildings/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -98,38 +175,10 @@
 							"port": "3000",
 							"path": [
 								"buildings",
-								"5fc50dbe471effeef47f49b1"
+								""
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "http://localhost:3000/buildings/5fc451e68cc2c50bea78d9b9",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{   \r\n    \"boilers\": [\r\n        \"507f1f77bcf86cd799439011\"\r\n    ],\r\n    \"name\": \"mockBuilding\",\r\n    \"address\": \"Montevideo 888\",\r\n    \"company\": \"507f1f77bcf86cd799439011\",\r\n    \"phone\": \"888-999-999\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/buildings/5fc451e68cc2c50bea78d9b9",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"buildings",
-								"5fc451e68cc2c50bea78d9b9"
-							]
-						}
+						"description": "Request to delete a building by the id."
 					},
 					"response": []
 				}
@@ -138,27 +187,63 @@
 		},
 		{
 			"name": "Technicians",
+<<<<<<< HEAD
 			"item": [
 				{
 					"name": "Get all technicians",
+=======
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "BoilerTypes",
+			"item": [
+				{
+					"name": "findAllBoilerTypes",
+>>>>>>> f1b55c9... findBoilerById function added. postmanCollections updated with the buildings, boilers and boilerTypes requests
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
+<<<<<<< HEAD
 							"raw": "localhost:3000/technicians",
+=======
+							"raw": "http://localhost:3000/boilerTypes",
+							"protocol": "http",
+>>>>>>> f1b55c9... findBoilerById function added. postmanCollections updated with the buildings, boilers and boilerTypes requests
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
+<<<<<<< HEAD
 								"technicians"
 							]
 						}
+=======
+								"boilerTypes"
+							]
+						},
+						"description": "Find all the boilers types in the DB."
+>>>>>>> f1b55c9... findBoilerById function added. postmanCollections updated with the buildings, boilers and boilerTypes requests
 					},
 					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
+<<<<<<< HEAD
+=======
+		},
+		{
+			"name": "Companies",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Appoinments",
+			"item": [],
+			"protocolProfileBehavior": {}
+>>>>>>> f1b55c9... findBoilerById function added. postmanCollections updated with the buildings, boilers and boilerTypes requests
 		}
 	],
 	"protocolProfileBehavior": {}

@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.get('/', boilersController.findAllBoilers);
 router.post('/', boilersController.createBoiler);
+router.get('/:id', boilersController.findBoilerById);
 
 module.exports = router;

@@ -42,18 +42,16 @@ const createBoiler = async (req, res) => {
   }
 };
 
-const getBoilersByBuilding = building => {
-  const boilersByBuilding = boilers.filter(
-    boiler => boiler.building.toString() === building
-  );
-  return boilersByBuilding;
-};
-
-const getBoilersById = id => {
-  const boilersById = boilers.filter(
-    boiler => boiler.id.toString() === id
-  );
-  return boilersById;
+const findBoilerById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await models.Boilers.findById(id);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({
+      message: `There is no boiler with an id: ${id}`,
+    });
+  }
 };
 
 const removeBoilerById = id => {
@@ -73,7 +71,6 @@ const removeBoilerById = id => {
 module.exports = {
   findAllBoilers,
   createBoiler,
-  getBoilersByBuilding,
-  getBoilersById,
+  findBoilerById,
   removeBoilerById
 };
