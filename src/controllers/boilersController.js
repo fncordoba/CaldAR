@@ -1,6 +1,4 @@
-const fs = require('fs');
 const models = require('../models');
-const boilers = require('../data/boilers.json');
 
 const findAllBoilers = async (req, res) => {
   try {
@@ -54,23 +52,49 @@ const findBoilerById = async (req, res) => {
   }
 };
 
-const removeBoilerById = id => {
-  const search = boilers.find(boiler => boiler.id.toString() === id);
-  const newBoilers = boilers.filter(boiler => boiler.id.toString() !== id);
-  if (search) {
-    fs.writeFileSync(
-      `${__dirname}/../data/boilers.json`,
-      JSON.stringify(newBoilers),
-      { encoding: 'utf-8', flag: 'w' },
-    );
-    return `Boiler with id ${id} deleted`;
+const updateBoilerById = async (req, res) => {
+  const { id } = req.params;
+  if (!req.body.description
+    || !req.body.boilerType
+    || !req.body.hourMaintenanceCost
+    || !req.body.hourEventualCost
+    || !req.body.maintenanceRate) {
+    return res.status(500).json({
+      message: 'Error. All fields must be filled to update the boiler record.',
+    });
   }
-  return `Boiler with id ${id} not found`;
+  try {
+    const result = await models.Boilers.findByIdAndUpdate(id, req.body, { new: true, });
+    return res.status(200).json({
+      message: `The boiler with an id: ${id} has been updated.`,
+      result
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: `Error. The boiler with an id: ${id} couldn't be updated.`,
+    });
+  }
+};
+
+const deleteBoilerById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await models.Boilers.findByIdAndDelete(id);
+    res.status(200).json({
+      message: `The boiler with an id: ${id} has been deleted.`,
+      result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: `Error. The boiler with an id: ${id} couldn't be deleted.`,
+    });
+  }
 };
 
 module.exports = {
   findAllBoilers,
   createBoiler,
   findBoilerById,
-  removeBoilerById
+  updateBoilerById,
+  deleteBoilerById
 };
