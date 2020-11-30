@@ -33,6 +33,15 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"\",\r\n    \"boilerType\": \"\",\r\n    \"hourMaintenanceCost\": ,\r\n    \"hourEventualCost\": ,\r\n    \"maintenanceRate\": \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/boilers",
 							"protocol": "http",
@@ -66,6 +75,57 @@
 							]
 						},
 						"description": "Request to find a boiler in the DB by id."
+					},
+					"response": []
+				},
+				{
+					"name": "updateBoiler",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"\",\r\n    \"boilerType\": \"\",\r\n    \"hourMaintenanceCost\": ,\r\n    \"hourEventualCost\": ,\r\n    \"maintenanceRate\": \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/boilers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilers",
+								""
+							]
+						},
+						"description": "Update a boiler record by the Id."
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBoilerById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/boilers/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilers",
+								""
+							]
+						},
+						"description": "Deletes a boiler record by the Id."
 					},
 					"response": []
 				}
