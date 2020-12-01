@@ -243,7 +243,79 @@
 		},
 		{
 			"name": "Technicians",
-			"item": [],
+			"item": [
+				{
+					"name": "findAllTechnicians",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/technicians",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createTechnician",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Técnico 1\",\r\n    \"lastName\": \"Gomez\",\r\n    \"address\": \"Corrientes 1500\",\r\n    \"phone\": \"4711556\",\r\n    \"boilerTypes\": [\"507f1f77bcf86cd799439011\", \"507f1f77bcf86cd799439012\"],\r\n    \"email\": \"pasda@gmail.com\",\r\n    \"dateOfBirth\": \"2018-04-03\",\r\n    \"monthlyCapacity\": 10,\r\n    \"hourRate\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/technicians",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findTechnicianById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/technicians/:id/112",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians",
+								":id",
+								"112"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
@@ -251,9 +323,51 @@
 			"item": [
 				{
 					"name": "findAllBoilerTypes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/boilerTypes/5fc58c426a955a26532ad704",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilerTypes",
+								"5fc58c426a955a26532ad704"
+							]
+						},
+						"description": "Find all the boilers types in the DB."
+					},
+					"response": []
+				},
+				{
+					"name": "createBoilerTypes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/boilerTypes",
 							"protocol": "http",
@@ -264,8 +378,58 @@
 							"path": [
 								"boilerTypes"
 							]
-						},
-						"description": "Find all the boilers types in the DB."
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findBoilerTypeById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBoilerTypeById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/boilerTypes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilerTypes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBoilerTypesById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/boilerTypes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilerTypes",
+								""
+							]
+						}
 					},
 					"response": []
 				}
@@ -302,9 +466,34 @@
 						}
 					},
 					"response": []
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Appointments",
+			"item": [
+				{
+					"name": "findAllAppointments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/appointments/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments",
+								""
+							]
+						}
+					},
+					"response": []
 				},
 				{
-					"name": "findAllCompanies",
+					"name": "createAnAppointment",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -319,6 +508,33 @@
 								"companies"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAppointmentById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/appointments/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Deletes an appointment by Id."
 					},
 					"response": []
 				}

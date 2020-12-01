@@ -12,4 +12,7 @@ router.get('/:id', appointmentsController.findById);
 // CREATE APPOINTMENTS
 router.post('/', appointmentsController.createAppointment);
 
+// DELETE APPOINTMENT BY ID
+router.delete('/:id', appointmentsController.deleteAppointmentById);
+
 module.exports = router;
