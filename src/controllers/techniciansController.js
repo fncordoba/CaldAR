@@ -42,7 +42,20 @@ const createTechnician = async (req, res) => {
   }
 };
 
+const findTechnicianById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const techniciansFromDB = await models.Technicians.findById(id);
+    res.status(200).json(techniciansFromDB);
+  } catch (error) {
+    res.status(500).json({
+      msg: `There is no technician with the id of ${id}`
+    });
+  }
+};
+
 module.exports = {
   getAllTechnicians,
-  createTechnician
+  createTechnician,
+  findTechnicianById
 };

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b6302b10-3155-4918-a3d5-a1506bd630c3",
+		"_postman_id": "cd1aa6dc-af80-4f27-aa26-1854aaf8ab11",
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -243,7 +243,79 @@
 		},
 		{
 			"name": "Technicians",
-			"item": [],
+			"item": [
+				{
+					"name": "findAllTechnicians",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/technicians",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createTechnician",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Técnico 1\",\r\n    \"lastName\": \"Gomez\",\r\n    \"address\": \"Corrientes 1500\",\r\n    \"phone\": \"4711556\",\r\n    \"boilerTypes\": [\"507f1f77bcf86cd799439011\", \"507f1f77bcf86cd799439012\"],\r\n    \"email\": \"pasda@gmail.com\",\r\n    \"dateOfBirth\": \"2018-04-03\",\r\n    \"monthlyCapacity\": 10,\r\n    \"hourRate\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/technicians",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findTechnicianById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/technicians/:id/112",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians",
+								":id",
+								"112"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
