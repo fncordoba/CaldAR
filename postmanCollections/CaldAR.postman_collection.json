@@ -35,7 +35,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"\",\r\n    \"boilerType\": \"\",\r\n    \"hourMaintenanceCost\": ,\r\n    \"hourEventualCost\": ,\r\n    \"maintenanceRate\": \r\n}",
+							"raw": "{\r\n    \"description\": \"type a\",\r\n    \"boilerType\": \"\",\r\n    \"hourMaintenanceCost\": ,\r\n    \"hourEventualCost\": ,\r\n    \"maintenanceRate\": \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -522,7 +522,7 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Appointments",
+			"name": "Appoinments",
 			"item": [
 				{
 					"name": "findAllAppointments",
@@ -547,8 +547,20 @@
 				{
 					"name": "createAnAppointment",
 					"request": {
-						"method": "GET",
+						"method": "POST",
+					"name": "updateAppointmentById",
+					"request": {
+						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n    {\n        \"_id\": \"\",\n        \"building\": \"\",\n        \"boiler\": \"\",\n        \"type\": \"\",\n        \"technician\": \"\",\n        \"monthlyHours\": 0,\n        \"__v\": 0\n    },",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/companies",
 							"protocol": "http",

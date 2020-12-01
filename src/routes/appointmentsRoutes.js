@@ -14,5 +14,7 @@ router.post('/', appointmentsController.createAppointment);
 
 // DELETE APPOINTMENT BY ID
 router.delete('/:id', appointmentsController.deleteAppointmentById);
+// UPDATE APPOINTMENTS
+router.put('/', appointmentsController.updateAppointmentById);
 
 module.exports = router;
