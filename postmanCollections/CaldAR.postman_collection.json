@@ -524,15 +524,25 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n    {\n        \"_id\": \"\",\n        \"building\": \"\",\n        \"boiler\": \"\",\n        \"type\": \"\",\n        \"technician\": \"\",\n        \"monthlyHours\": 0,\n        \"__v\": 0\n    },",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/Appointments",
+							"raw": "http://localhost:3000/appointments/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"Appointments"
+								"appointments",
+								""
 							]
 						}
 					},
