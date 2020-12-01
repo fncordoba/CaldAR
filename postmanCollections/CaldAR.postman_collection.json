@@ -546,6 +546,9 @@
 				},
 				{
 					"name": "createAnAppointment",
+				},
+				{
+					"name": "findAllCompanies",
 					"request": {
 						"method": "POST",
 					"name": "updateAppointmentById",
