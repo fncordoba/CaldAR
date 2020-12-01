@@ -54,8 +54,31 @@ const findTechnicianById = async (req, res) => {
   }
 };
 
+const updateTechnician = async (req, res) => {
+  const { id } = req.params;
+  if (!req.body.firstName || !req.body.address || !req.body.lastName || !req.body.phone
+    || !req.body.boilerTypes || !req.body.email || !req.body.dateOfBirth
+    || !req.body.monthlyCapacity || !req.body.hourRate) {
+    return res.status(500).json({
+      msg: 'Error: missing required field to create a Technician'
+    });
+  }
+  try {
+    const result = await models.Technicians.findByIdAndUpdate(id, req.body, { new: true, });
+    return res.status(200).json({
+      msg: 'Updated technician:',
+      result
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'An error appeared while updating the Technician'
+    });
+  }
+};
+
 module.exports = {
   getAllTechnicians,
   createTechnician,
-  findTechnicianById
+  findTechnicianById,
+  updateTechnician
 };
