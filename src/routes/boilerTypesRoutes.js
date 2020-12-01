@@ -10,3 +10,4 @@ router.put('/:id', boilerTypesController.updateBoilerTypeById);
 router.delete('/:id', boilerTypesController.deleteBoilerTypeById);
 
 module.exports = router;
+ 

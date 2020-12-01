@@ -7,7 +7,7 @@ const getAllBoilerTypes = async (req, res) => {
     res.status(200).json(boilerTypesResult);
   } catch (error) {
     res.status(500).json({
-      message: 'Error trying to fetch boilers type',
+      message: "Error trying to fetch boilers types",
     });
   }
 };
