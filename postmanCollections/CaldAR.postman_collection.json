@@ -370,6 +370,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "deleteCompany",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/companies/5fc56a6e05ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"companies",
+								"5fc56a6e05ec"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

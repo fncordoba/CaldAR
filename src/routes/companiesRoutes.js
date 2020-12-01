@@ -15,4 +15,7 @@ router.get('/:id', companiesController.companyById);
 // UPDATING COMPANY BY ID
 router.put('/:id', companiesController.updateCompany);
 
+// DELETE COMPANY BY ID
+router.delete('/:id', companiesController.deleteCompany);
+
 module.exports = router;

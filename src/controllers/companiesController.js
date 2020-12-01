@@ -69,9 +69,25 @@ const updateCompany = async (req, res) => {
   }
 };
 
+const deleteCompany = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await models.Companies.findByIdAndDelete(id);
+    res.status(200).json({
+      msg: 'The next company has been deleted succesfully',
+      result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      msg: 'An error occurred while deleting the company',
+    });
+  }
+};
+
 module.exports = {
   createCompany,
   findAllCompanies,
   companyById,
-  updateCompany
+  updateCompany,
+  deleteCompany
 };
