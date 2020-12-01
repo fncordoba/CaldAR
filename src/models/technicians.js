@@ -14,28 +14,28 @@ const techniciansSchema = mongoose.Schema({
     required: true
   },
   phone: {
-    type: Number,
+    type: String,
     required: true
   },
-  boilerTypes: {
+  boilerTypes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'boilerTypes',
     required: true
-  },
+  }],
   email: {
     type: String,
     required: true
   },
   dateOfBirth: {
-    type: String,
+    type: Date,
     required: true
   },
   monthlyCapacity: {
-    type: String,
+    type: Number,
     required: true
   },
   hourRate: {
-    type: String,
+    type: Number,
     required: true
   }
 },
