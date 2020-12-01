@@ -12,4 +12,7 @@ router.get('/', companiesController.findAllCompanies);
 // GET COMPANIES BY ID
 router.get('/:id', companiesController.companyById);
 
+// UPDATING COMPANY BY ID
+router.put('/:id', companiesController.updateCompany);
+
 module.exports = router;

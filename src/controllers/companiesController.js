@@ -49,8 +49,29 @@ const companyById = async (req, res) => {
   }
 };
 
+const updateCompany = async (req, res) => {
+  const { id } = req.params;
+  if (!req.body.name || !req.body.phone || !req.body.address || !req.body.cuit || !req.body.email) {
+    return res.status(500).json({
+      msg: 'Missing required fields to update a company'
+    });
+  }
+  try {
+    const result = await models.Companies.findByIdAndUpdate(id, req.body, { new: true, });
+    return res.status(200).json({
+      msg: 'Updated company below',
+      result
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'An error appeared while updating the company',
+    });
+  }
+};
+
 module.exports = {
   createCompany,
   findAllCompanies,
-  companyById
+  companyById,
+  updateCompany
 };

@@ -60,6 +60,10 @@ const deleteAppointmentById = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: `Error. The appointment with an id: ${id} couldn't be deleted.`,
+    });
+  }
+};
+
 const updateAppointmentById = async (req, res) => {
   const { id } = req.params;
   if (!req.body.building

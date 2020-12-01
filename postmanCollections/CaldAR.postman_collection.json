@@ -35,7 +35,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"type a\",\r\n    \"boilerType\": \"\",\r\n    \"hourMaintenanceCost\": ,\r\n    \"hourEventualCost\": ,\r\n    \"maintenanceRate\": \r\n}",
+							"raw": "{\r\n    \"description\": \"\",\r\n    \"boilerType\": \"\",\r\n    \"hourMaintenanceCost\": ,\r\n    \"hourEventualCost\": ,\r\n    \"maintenanceRate\": \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -243,131 +243,7 @@
 		},
 		{
 			"name": "Technicians",
-			"item": [
-				{
-					"name": "findAllTechnicians",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/technicians",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"technicians"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "createTechnician",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Técnico 1\",\r\n    \"lastName\": \"Gomez\",\r\n    \"address\": \"Corrientes 1500\",\r\n    \"phone\": \"4711556\",\r\n    \"boilerTypes\": [\"507f1f77bcf86cd799439011\", \"507f1f77bcf86cd799439012\"],\r\n    \"email\": \"pasda@gmail.com\",\r\n    \"dateOfBirth\": \"2018-04-03\",\r\n    \"monthlyCapacity\": 10,\r\n    \"hourRate\": 100\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/technicians",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"technicians"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "findTechnicianById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/technicians/:id/112",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"technicians",
-								":id",
-								"112"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "updateTechnician",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:3000/technicians/:id",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"technicians",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteTechnicians",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/technicians",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"technicians"
-							]
-						}
-					},
-					"response": []
-				}
-			],
+			"item": [],
 			"protocolProfileBehavior": {}
 		},
 		{
@@ -426,52 +302,12 @@
 						}
 					},
 					"response": []
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Appoinments",
-			"item": [
-				{
-					"name": "findAllAppointments",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/appointments/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"appointments",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "createAnAppointment",
 				},
 				{
 					"name": "findAllCompanies",
 					"request": {
-						"method": "POST",
-					"name": "updateAppointmentById",
-					"request": {
-						"method": "PUT",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\n    {\n        \"_id\": \"\",\n        \"building\": \"\",\n        \"boiler\": \"\",\n        \"type\": \"\",\n        \"technician\": \"\",\n        \"monthlyHours\": 0,\n        \"__v\": 0\n    },",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://localhost:3000/companies",
 							"protocol": "http",
@@ -491,6 +327,35 @@
 					"request": {
 						"method": "GET",
 						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/companies/5fc55b3c7353d15478f02f51",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"companies",
+								"5fc55b3c7353d15478f02f51"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCompany",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Diego Armando Maradona\",\r\n        \"address\": \"El cielo\",\r\n        \"cuit\": \"hola\",\r\n        \"phone\": \"10\",\r\n        \"email\": \"diego@dios.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/companies/5fc55b3c7353d15478f02f51",
 							"protocol": "http",
