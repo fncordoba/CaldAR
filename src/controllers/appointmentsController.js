@@ -60,6 +60,26 @@ const deleteAppointmentById = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: `Error. The appointment with an id: ${id} couldn't be deleted.`,
+const updateAppointmentById = async (req, res) => {
+  const { id } = req.params;
+  if (!req.body.building
+    || !req.body.boiler
+    || !req.body.technician
+    || !req.body.type
+    || !req.body.monthlyHours) {
+    return res.status(500).json({
+      message: 'Error. All fields must be filled to update the appointment record.',
+    });
+  }
+  try {
+    const result = await models.Appointments.findByIdAndUpdate(id, req.body, { new: true, });
+    return res.status(200).json({
+      message: `The appointment with an id: ${id} has been updated.`,
+      result
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: `Error. The appointment with an id: ${id} couldn't be updated.`,
     });
   }
 };
@@ -69,4 +89,5 @@ module.exports = {
   findById,
   createAppointment,
   deleteAppointmentById,
+  updateAppointmentById,
 };

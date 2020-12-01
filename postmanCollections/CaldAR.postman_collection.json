@@ -35,7 +35,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"\",\r\n    \"boilerType\": \"\",\r\n    \"hourMaintenanceCost\": ,\r\n    \"hourEventualCost\": ,\r\n    \"maintenanceRate\": \r\n}",
+							"raw": "{\r\n    \"description\": \"type a\",\r\n    \"boilerType\": \"\",\r\n    \"hourMaintenanceCost\": ,\r\n    \"hourEventualCost\": ,\r\n    \"maintenanceRate\": \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -490,40 +490,11 @@
 		},
 		{
 			"name": "Companies",
-			"item": [
-				{
-					"name": "createCompanies",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Mauricio\",\r\n    \"address\":\"Viamonte 028910\",\r\n    \"cuit\":\"0258963\",\r\n    \"phone\":\"123698547\",\r\n    \"email\":\"mauricio@rr.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/companies",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"companies"
-							]
-						}
-					},
-					"response": []
-				}
-			],
+			"item": [],
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Appointments",
+			"name": "Appoinments",
 			"item": [
 				{
 					"name": "findAllAppointments",
@@ -549,26 +520,19 @@
 					"name": "createAnAppointment",
 					"request": {
 						"method": "POST",
+					"name": "updateAppointmentById",
+					"request": {
+						"method": "PUT",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"building\": \"5fc451e68cc2c50bea78d9b9\",\r\n    \"boiler\": \"507f1f77bcf86cd799439011\",\r\n    \"type\": \"eventual\",\r\n    \"technician\": \"507f1f77bcf86cd799439011\",\r\n    \"monthlyHours\": \"11\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:3000/appointments/",
+							"raw": "http://localhost:3000/Appointments",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"appointments",
-								""
+								"Appointments"
 							]
 						}
 					},
