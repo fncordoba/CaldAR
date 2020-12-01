@@ -375,51 +375,9 @@
 			"item": [
 				{
 					"name": "findAllBoilerTypes",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/boilerTypes/5fc58c426a955a26532ad704",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"boilerTypes",
-								"5fc58c426a955a26532ad704"
-							]
-						},
-						"description": "Find all the boilers types in the DB."
-					},
-					"response": []
-				},
-				{
-					"name": "createBoilerTypes",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"description\": \"\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://localhost:3000/boilerTypes",
 							"protocol": "http",
@@ -430,58 +388,8 @@
 							"path": [
 								"boilerTypes"
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "findBoilerTypeById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "updateBoilerTypeById",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/boilerTypes/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"boilerTypes",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteBoilerTypesById",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/boilerTypes/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"boilerTypes",
-								""
-							]
-						}
+						},
+						"description": "Find all the boilers types in the DB."
 					},
 					"response": []
 				}
@@ -579,29 +487,22 @@
 					"response": []
 				},
 				{
-					"name": "deleteAppointmentById",
+					"name": "findById for companies",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/appointments/:id",
+							"raw": "http://localhost:3000/companies/5fc55b3c7353d15478f02f51",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
-								"appointments",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": ""
-								}
+								"companies",
+								"5fc55b3c7353d15478f02f51"
 							]
-						},
-						"description": "Deletes an appointment by Id."
+						}
 					},
 					"response": []
 				}
