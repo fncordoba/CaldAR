@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "cd1aa6dc-af80-4f27-aa26-1854aaf8ab11",
+		"_postman_id": "5220ed5f-5597-447f-8e0f-4c3e4c4ee08f",
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -474,7 +474,7 @@
 			"name": "Appointments",
 			"item": [
 				{
-					"name": "http://localhost:3000/appointments/",
+					"name": "findAllAppointments",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -494,7 +494,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:3000/appointments/",
+					"name": "createAnAppointment",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -519,6 +519,33 @@
 								""
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAppointmentById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/appointments/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						},
+						"description": "Deletes an appointment by Id."
 					},
 					"response": []
 				}

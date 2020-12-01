@@ -49,8 +49,24 @@ const createAppointment = async (req, res) => {
   }
 };
 
+const deleteAppointmentById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await models.Appointments.findByIdAndDelete(id);
+    res.status(200).json({
+      message: `The appointment with an id: ${id} has been deleted.`,
+      result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: `Error. The appointment with an id: ${id} couldn't be deleted.`,
+    });
+  }
+};
+
 module.exports = {
   findAll,
   findById,
   createAppointment,
+  deleteAppointmentById,
 };
