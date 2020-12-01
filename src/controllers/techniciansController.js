@@ -76,9 +76,25 @@ const updateTechnician = async (req, res) => {
   }
 };
 
+const deleteTechnician = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await models.Technicians.findByIdAndDelete(id);
+    res.status(200).json({
+      msg: 'Technician eliminated: ',
+      result
+    });
+  } catch (error) {
+    res.status(500).json({
+      msg: 'Error: something went wrong while deleting Technician'
+    });
+  }
+};
+
 module.exports = {
   getAllTechnicians,
   createTechnician,
   findTechnicianById,
-  updateTechnician
+  updateTechnician,
+  deleteTechnician
 };
