@@ -11,6 +11,18 @@ const findAll = async (req, res) => {
   }
 };
 
+const findById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await models.Appointments.findById(id);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({
+      msg: `Could'n find an appointment with id of ${id}`,
+    });
+  }
+};
+
 const createAppointment = async (req, res) => {
   if (!req.body.building || !req.body.boiler || !req.body.technician
     || !req.body.type || !req.body.monthlyHours) {
@@ -39,5 +51,6 @@ const createAppointment = async (req, res) => {
 
 module.exports = {
   findAll,
+  findById,
   createAppointment,
 };
