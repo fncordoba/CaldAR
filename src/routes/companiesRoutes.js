@@ -9,4 +9,7 @@ router.post('/', companiesController.createCompany);
 // FIND ALL COMPANIES
 router.get('/', companiesController.findAllCompanies);
 
+// GET COMPANIES BY ID
+router.get('/:id', companiesController.companyById);
+
 module.exports = router;

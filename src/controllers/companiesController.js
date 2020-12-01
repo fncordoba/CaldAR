@@ -37,7 +37,20 @@ const findAllCompanies = async (req, res) => {
   }
 };
 
+const companyById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const dbCompanies = await models.Companies.findById(id);
+    res.status(200).json(dbCompanies);
+  } catch (error) {
+    res.status(500).json({
+      msg: `There is no company with id of ${id}`
+    });
+  }
+};
+
 module.exports = {
   createCompany,
-  findAllCompanies
+  findAllCompanies,
+  companyById
 };
