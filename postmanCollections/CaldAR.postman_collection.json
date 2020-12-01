@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b24c2a7c-9fbd-4fff-af7a-2a9c0c792549",
+		"_postman_id": "b6302b10-3155-4918-a3d5-a1506bd630c3",
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -251,9 +251,51 @@
 			"item": [
 				{
 					"name": "findAllBoilerTypes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/boilerTypes/5fc58c426a955a26532ad704",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilerTypes",
+								"5fc58c426a955a26532ad704"
+							]
+						},
+						"description": "Find all the boilers types in the DB."
+					},
+					"response": []
+				},
+				{
+					"name": "createBoilerTypes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/boilerTypes",
 							"protocol": "http",
@@ -264,8 +306,58 @@
 							"path": [
 								"boilerTypes"
 							]
-						},
-						"description": "Find all the boilers types in the DB."
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findBoilerTypeById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBoilerTypeById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/boilerTypes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilerTypes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBoilerTypesById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/boilerTypes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilerTypes",
+								""
+							]
+						}
 					},
 					"response": []
 				}
