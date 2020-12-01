@@ -26,6 +26,18 @@ const createCompany = async (req, res) => {
   }
 };
 
+const findAllCompanies = async (req, res) => {
+  try {
+    const dbCompanies = await models.Companies.find({});
+    res.status(200).json(dbCompanies);
+  } catch (error) {
+    res.status(500).json({
+      msg: 'Error ! Couldn\'t find companies list'
+    });
+  }
+};
+
 module.exports = {
-  createCompany
+  createCompany,
+  findAllCompanies
 };
