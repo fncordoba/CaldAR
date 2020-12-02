@@ -8,11 +8,12 @@ const companiesRoutes = require('./companiesRoutes');
 
 const router = express.Router();
 
-router.use('/boilers', boilersRoutes);
-router.use('/buildings', buildingsRoutes);
-router.use('/technicians', techniciansRoutes);
-router.use('/boilerTypes', boilerTypesRoutes);
-router.use('/appointments', appointmentsRoutes);
-router.use('/companies', companiesRoutes);
+router
+  .use('/boilers', boilersRoutes)
+  .use('/buildings', buildingsRoutes)
+  .use('/technicians', techniciansRoutes)
+  .use('/boilerTypes', boilerTypesRoutes)
+  .use('/appointments', appointmentsRoutes)
+  .use('/companies', companiesRoutes);
 
 module.exports = router;

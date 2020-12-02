@@ -3,9 +3,11 @@ const techniciansController = require('../controllers/techniciansController');
 
 const router = express.Router();
 
-router.get('/', techniciansController.getAllTechnicians);
-router.post('/', techniciansController.createTechnician);
-router.get('/:id', techniciansController.findTechnicianById);
-router.put('/:id', techniciansController.updateTechnician);
-router.delete('/:id', techniciansController.deleteTechnician);
+router
+  .get('/', techniciansController.getAllTechnicians)
+  .get('/:id', techniciansController.findTechnicianById)
+  .post('/', techniciansController.createTechnician)
+  .put('/:id', techniciansController.updateTechnician)
+  .delete('/:id', techniciansController.deleteTechnician);
+
 module.exports = router;

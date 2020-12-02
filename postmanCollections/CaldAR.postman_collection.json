@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c86492c7-0aeb-4462-90f9-32f79126b3e5",
+		"_postman_id": "a13aa6f4-512b-4f37-ba4a-e1cad7cee0de",
 		"name": "CaldAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "Boilers",
 			"item": [
 				{
-					"name": "findAllBoilers",
+					"name": "getAllBoilers",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -29,13 +29,40 @@
 					"response": []
 				},
 				{
-					"name": "createNewBoiler",
+					"name": "getBoilerById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/boilers/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilers",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc7d522959c6ab91a1a974a"
+								}
+							]
+						},
+						"description": "Request to find a boiler in the DB by id."
+					},
+					"response": []
+				},
+				{
+					"name": "createBoiler",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"\",\r\n    \"boilerType\": \"\",\r\n    \"hourMaintenanceCost\": ,\r\n    \"hourEventualCost\": ,\r\n    \"maintenanceRate\": \r\n}",
+							"raw": "{\r\n    \"description\": \"Boiler 1\",\r\n    \"boilerType\": \"5fc5864bfd75d6bb9c86bf79\",\r\n    \"hourMaintenanceCost\": \"1234\",\r\n    \"hourEventualCost\": \"123\",\r\n    \"maintenanceRate\": \"123\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -58,34 +85,13 @@
 					"response": []
 				},
 				{
-					"name": "findBoilerById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/boilers/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"boilers",
-								""
-							]
-						},
-						"description": "Request to find a boiler in the DB by id."
-					},
-					"response": []
-				},
-				{
 					"name": "updateBoiler",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"\",\r\n    \"boilerType\": \"\",\r\n    \"hourMaintenanceCost\": ,\r\n    \"hourEventualCost\": ,\r\n    \"maintenanceRate\": \r\n}",
+							"raw": "{\r\n    \"description\": \"Boiler 1 updated\",\r\n    \"boilerType\": \"5fc7d522959c6ab91a1a9741\",\r\n    \"hourMaintenanceCost\": \"1234\",\r\n    \"hourEventualCost\": \"1234\",\r\n    \"maintenanceRate\": \"1234\" \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -93,7 +99,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/boilers/",
+							"raw": "http://localhost:3000/boilers/:id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -101,7 +107,13 @@
 							"port": "3000",
 							"path": [
 								"boilers",
-								""
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc7d522959c6ab91a1a974a"
+								}
 							]
 						},
 						"description": "Update a boiler record by the Id."
@@ -109,12 +121,12 @@
 					"response": []
 				},
 				{
-					"name": "deleteBoilerById",
+					"name": "deleteBoiler",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/boilers/",
+							"raw": "http://localhost:3000/boilers/:id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -122,7 +134,13 @@
 							"port": "3000",
 							"path": [
 								"boilers",
-								""
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc7d522959c6ab91a1a974a"
+								}
 							]
 						},
 						"description": "Deletes a boiler record by the Id."
@@ -136,7 +154,7 @@
 			"name": "Buildings",
 			"item": [
 				{
-					"name": "findAllBuildings",
+					"name": "getAllBuildings",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -156,10 +174,46 @@
 					"response": []
 				},
 				{
-					"name": "createNewBuilding",
+					"name": "getBuildingById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/buildings/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"buildings",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc7d724959c6ab91a1a974b"
+								}
+							]
+						},
+						"description": "Find a building in the DB by id."
+					},
+					"response": []
+				},
+				{
+					"name": "createBuilding",
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"boilers\": [\n        \"507f1f77bcf86cd799439011\"\n    ],\n    \"name\": \"mockBuilding 3\",\n    \"address\": \"Montevideo 888\",\n    \"company\": \"507f1f77bcf86cd799439011\",\n    \"phone\": \"888-999-999\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/buildings",
 							"protocol": "http",
@@ -176,33 +230,21 @@
 					"response": []
 				},
 				{
-					"name": "findBuildingById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/buildings/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"buildings",
-								""
-							]
-						},
-						"description": "Find a building in the DB by id."
-					},
-					"response": []
-				},
-				{
 					"name": "updateBuilding",
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"boilers\": [\n        \"507f1f77bcf86cd799439011\"\n    ],\n    \"name\": \"mockBuilding 4\",\n    \"address\": \"Montevideo 888\",\n    \"company\": \"507f1f77bcf86cd799439011\",\n    \"phone\": \"888-999-999\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:3000/buildings/",
+							"raw": "http://localhost:3000/buildings/:id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -210,7 +252,13 @@
 							"port": "3000",
 							"path": [
 								"buildings",
-								""
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc451e68cc2c50bea78d9b9"
+								}
 							]
 						},
 						"description": "Request to update a building by the id."
@@ -223,7 +271,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/buildings/",
+							"raw": "http://localhost:3000/buildings/:id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -231,7 +279,13 @@
 							"port": "3000",
 							"path": [
 								"buildings",
-								""
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc451e68cc2c50bea78d9b9"
+								}
 							]
 						},
 						"description": "Request to delete a building by the id."
@@ -243,14 +297,144 @@
 		},
 		{
 			"name": "Technicians",
-			"item": [],
+			"item": [
+				{
+					"name": "getAllTechnicians",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/technicians",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTechnicianById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/technicians/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc5a7659ed8dd3edc4d0db0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createTechnician",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"boilerTypes\": [\n        \"507f1f77bcf86cd799439011\",\n        \"507f1f77bcf86cd799439012\"\n    ],\n    \"firstName\": \"Técnico 5\",\n    \"address\": \"Corrientes 1500\",\n    \"lastName\": \"Gomez\",\n    \"phone\": \"4711556\",\n    \"email\": \"pasda@gmail.com\",\n    \"dateOfBirth\": \"2018-04-03T00:00:00.000Z\",\n    \"monthlyCapacity\": 10,\n    \"hourRate\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/technicians",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTechnician",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"boilerTypes\": [\n        \"507f1f77bcf86cd799439011\",\n        \"507f1f77bcf86cd799439012\"\n    ],\n    \"firstName\": \"Técnico 6\",\n    \"address\": \"Corrientes 1500\",\n    \"lastName\": \"Gomez\",\n    \"phone\": \"4711556\",\n    \"email\": \"pasda@gmail.com\",\n    \"dateOfBirth\": \"2018-04-03T00:00:00.000Z\",\n    \"monthlyCapacity\": 10,\n    \"hourRate\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/technicians/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc7d824959c6ab91a1a974d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteTechnician",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/technicians/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"technicians",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc7d824959c6ab91a1a974d"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "BoilerTypes",
 			"item": [
 				{
-					"name": "findAllBoilerTypes",
+					"name": "getAllBoilerTypes",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -268,6 +452,120 @@
 						"description": "Find all the boilers types in the DB."
 					},
 					"response": []
+				},
+				{
+					"name": "getBoilerTypeById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/boilerTypes/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilerTypes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc7d9bf220042cc712d3792"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createBoilerType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"BoilerType 1 desc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/boilerTypes",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilerTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateBoilerType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Algo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/boilerTypes/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilerTypes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc7d9bf220042cc712d3792"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteBoilerType",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/boilerTypes/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"boilerTypes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc7d9bf220042cc712d3792"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -275,6 +573,51 @@
 		{
 			"name": "Companies",
 			"item": [
+				{
+					"name": "getAllCompanies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/companies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCompanyById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/companies/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"companies",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc55b3c7353d15478f02f51"
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "createCompanies",
 					"request": {
@@ -304,52 +647,13 @@
 					"response": []
 				},
 				{
-					"name": "findAllCompanies",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/companies",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"companies"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "findById for companies",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/companies/5fc55b3c7353d15478f02f51",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"companies",
-								"5fc55b3c7353d15478f02f51"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "updateCompany",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"name\": \"Diego Armando Maradona\",\r\n        \"address\": \"El cielo\",\r\n        \"cuit\": \"hola\",\r\n        \"phone\": \"10\",\r\n        \"email\": \"diego@dios.com\"\r\n    }",
+							"raw": "    {\r\n        \"name\": \"Diego Armando Maradona2\",\r\n        \"address\": \"El cielo\",\r\n        \"cuit\": \"hola\",\r\n        \"phone\": \"10\",\r\n        \"email\": \"diego@dios.com\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -357,7 +661,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/companies/5fc55b3c7353d15478f02f51",
+							"raw": "http://localhost:3000/companies/:id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -365,7 +669,13 @@
 							"port": "3000",
 							"path": [
 								"companies",
-								"5fc55b3c7353d15478f02f51"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc55b3c7353d15478f02f51"
+								}
 							]
 						}
 					},
@@ -377,7 +687,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/companies/5fc56a6e05ec",
+							"raw": "http://localhost:3000/companies/:id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -385,7 +695,148 @@
 							"port": "3000",
 							"path": [
 								"companies",
-								"5fc56a6e05ec"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc55b3c7353d15478f02f51"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Appointments",
+			"item": [
+				{
+					"name": "getAllAppointments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/appointments",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAppointmentById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/appointments/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc5864bfd75d6bb9c86bf79"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createAppointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"building\": \"5fc5864bfd75d6bb9c86bf73\",\n    \"boiler\": \"5fc5864bfd75d6bb9c86bf74\",\n    \"technician\": \"5fc5864bfd75d6bb9c86bf75\",\n    \"type\": \"programmed\",\n    \"monthlyHours\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/appointments",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateAppointment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"building\": \"5fc5864bfd75d6bb9c86bf73\",\n    \"boiler\": \"5fc5864bfd75d6bb9c86bf74\",\n    \"technician\": \"5fc5864bfd75d6bb9c86bf75\",\n    \"type\": \"programmed\",\n    \"monthlyHours\": \"12345\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/appointments/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc5864bfd75d6bb9c86bf79"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAppointment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/appointments/:id",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"appointments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5fc5864bfd75d6bb9c86bf71"
+								}
 							]
 						}
 					},

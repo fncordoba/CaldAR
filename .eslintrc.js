@@ -12,6 +12,7 @@ module.exports = {
   },
   rules: {
     'arrow-parens': 'off',
-    'comma-dangle': 'off'
+    'comma-dangle': 'off',
+    'no-console': 'off'
   },
 };
