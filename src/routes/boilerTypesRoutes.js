@@ -7,7 +7,7 @@ router
   .get('/', boilerTypesController.getAllBoilerTypes)
   .get('/:id', boilerTypesController.getBoilerTypeById)
   .post('/', boilerTypesController.createBoilerType)
-  .put('/:id', boilerTypesController.updateBoilerTypeById)
+  .put('/:id', boilerTypesController.updateBoilerType)
   .delete('/:id', boilerTypesController.deleteBoilerTypeById);
 
 module.exports = router;

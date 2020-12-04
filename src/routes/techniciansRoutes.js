@@ -5,7 +5,7 @@ const router = express.Router();
 
 router
   .get('/', techniciansController.getAllTechnicians)
-  .get('/:id', techniciansController.findTechnicianById)
+  .get('/:id', techniciansController.getTechnicianById)
   .post('/', techniciansController.createTechnician)
   .put('/:id', techniciansController.updateTechnician)
   .delete('/:id', techniciansController.deleteTechnician);

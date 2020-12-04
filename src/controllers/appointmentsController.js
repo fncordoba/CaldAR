@@ -3,10 +3,11 @@ const models = require('../models');
 const getAllAppointments = async (req, res) => {
   try {
     const appointments = await models.Appointments.find({});
+
     return res.status(200).json(appointments);
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error appeared while finding appointments',
+      msg: 'An error has occurred',
     });
   }
 };
@@ -14,15 +15,16 @@ const getAllAppointments = async (req, res) => {
 const getAppointmentById = async (req, res) => {
   try {
     const appointment = await models.Appointments.findById(req.params.id);
+
     if (!appointment) {
       return res.status(400).json({
-        msg: 'The appointment has not found'
+        msg: 'The appointment has not been found'
       });
     }
     return res.status(200).json(appointment);
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error appeared while finding an appointment',
+      msg: 'An error has occurred',
     });
   }
 };
@@ -30,8 +32,8 @@ const getAppointmentById = async (req, res) => {
 const createAppointment = async (req, res) => {
   if (!req.body.building || !req.body.boiler || !req.body.technician
     || !req.body.type || !req.body.monthlyHours) {
-    return res.status(500).json({
-      msg: 'Missing required fields to create an appointment',
+    return res.status(400).json({
+      msg: 'Error: Missing required fields to create an appointment',
     });
   }
 
@@ -45,28 +47,11 @@ const createAppointment = async (req, res) => {
 
   try {
     const result = await appointment.save();
+
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error appeared while creating an appointment',
-    });
-  }
-};
-
-const deleteAppointment = async (req, res) => {
-  try {
-    const result = await models.Appointments.findByIdAndDelete(req.params.id);
-    if (!result) {
-      return res.status(400).json({
-        msg: 'The appointment has not found'
-      });
-    }
-    return res.status(200).json({
-      msg: 'The appointment has been deleted.',
-    });
-  } catch (error) {
-    return res.status(500).json({
-      msg: 'An error appeared while deleting an appointment',
+      msg: 'An error has occurred',
     });
   }
 };
@@ -77,23 +62,43 @@ const updateAppointment = async (req, res) => {
     || !req.body.technician
     || !req.body.type
     || !req.body.monthlyHours) {
-    return res.status(500).json({
-      msg: 'Error. All fields must be filled to update the appointment record.',
+    return res.status(400).json({
+      msg: 'Error: Missing required fields to update an appointment',
     });
   }
   try {
     const result = await models.Appointments.findByIdAndUpdate(
       req.params.id, req.body, { new: true, }
     );
+
     if (!result) {
       return res.status(400).json({
-        msg: 'The appointment has not found'
+        msg: 'The appointment has not been found'
       });
     }
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error appeared while updating an appointment',
+      msg: 'An error has occurred',
+    });
+  }
+};
+
+const deleteAppointment = async (req, res) => {
+  try {
+    const result = await models.Appointments.findByIdAndDelete(req.params.id);
+
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The appointment has not been found'
+      });
+    }
+    return res.status(200).json({
+      msg: 'The appointment has been deleted'
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'An error has occurred'
     });
   }
 };

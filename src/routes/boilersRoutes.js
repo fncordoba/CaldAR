@@ -4,10 +4,10 @@ const boilersController = require('../controllers/boilersController');
 const router = express.Router();
 
 router
-  .get('/', boilersController.findAllBoilers)
-  .get('/:id', boilersController.findBoilerById)
+  .get('/', boilersController.getAllBoilers)
+  .get('/:id', boilersController.getBoilerById)
   .post('/', boilersController.createBoiler)
-  .put('/:id', boilersController.updateBoilerById)
-  .delete('/:id', boilersController.deleteBoilerById);
+  .put('/:id', boilersController.updateBoiler)
+  .delete('/:id', boilersController.deleteBoiler);
 
 module.exports = router;

@@ -2,11 +2,29 @@ const models = require('../models');
 
 const getAllTechnicians = async (req, res) => {
   try {
-    const techniciansFromDB = await models.Technicians.find({});
-    res.status(200).json(techniciansFromDB);
+    const technicians = await models.Technicians.find({});
+
+    return res.status(200).json(technicians);
   } catch (error) {
-    res.status(500).json({
-      msg: 'Error: cannot find all the technicians'
+    return res.status(500).json({
+      msg: 'An error has occurred'
+    });
+  }
+};
+
+const getTechnicianById = async (req, res) => {
+  try {
+    const technician = await models.Technicians.findById(req.params.id);
+
+    if (!technician) {
+      return res.status(400).json({
+        msg: 'The technician has not been found'
+      });
+    }
+    return res.status(200).json(technician);
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'An error has occurred',
     });
   }
 };
@@ -15,8 +33,8 @@ const createTechnician = async (req, res) => {
   if (!req.body.firstName || !req.body.address || !req.body.lastName || !req.body.phone
   || !req.body.boilerTypes || !req.body.email || !req.body.dateOfBirth
   || !req.body.monthlyCapacity || !req.body.hourRate) {
-    return res.status(500).json({
-      msg: 'Error: missing required fields to create a new Technician'
+    return res.status(400).json({
+      msg: 'Error: Missing required fields to create a technician'
     });
   }
 
@@ -34,67 +52,64 @@ const createTechnician = async (req, res) => {
 
   try {
     const result = await technician.save();
+
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      msg: 'Error: required field missing'
-    });
-  }
-};
-
-const findTechnicianById = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const techniciansFromDB = await models.Technicians.findById(id);
-    res.status(200).json(techniciansFromDB);
-  } catch (error) {
-    res.status(500).json({
-      msg: `There is no technician with the id of ${id}`
+      msg: 'An error has occurred'
     });
   }
 };
 
 const updateTechnician = async (req, res) => {
-  const { id } = req.params;
   if (!req.body.firstName || !req.body.address || !req.body.lastName || !req.body.phone
     || !req.body.boilerTypes || !req.body.email || !req.body.dateOfBirth
     || !req.body.monthlyCapacity || !req.body.hourRate) {
-    return res.status(500).json({
-      msg: 'Error: missing required field to create a Technician'
+    return res.status(400).json({
+      msg: 'Error: missing required fields to update a technician'
     });
   }
   try {
-    const result = await models.Technicians.findByIdAndUpdate(id, req.body, { new: true, });
-    return res.status(200).json({
-      msg: 'Updated technician:',
-      result
-    });
+    const result = await models.Technicians.findByIdAndUpdate(
+      req.params.id, req.body, { new: true, }
+    );
+
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The technician has not been found'
+      });
+    }
+    return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error appeared while updating the Technician'
+      msg: 'An error has occurred'
     });
   }
 };
 
 const deleteTechnician = async (req, res) => {
-  const { id } = req.params;
   try {
-    const result = await models.Technicians.findByIdAndDelete(id);
-    res.status(200).json({
-      msg: 'Technician eliminated: ',
-      result
+    const result = await models.Technicians.findByIdAndDelete(req.params.id);
+
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The technician has not been found'
+      });
+    }
+    return res.status(200).json({
+      msg: 'The technician has been deleted'
     });
   } catch (error) {
-    res.status(500).json({
-      msg: 'Error: something went wrong while deleting Technician'
+    return res.status(500).json({
+      msg: 'An error has occurred'
     });
   }
 };
 
 module.exports = {
   getAllTechnicians,
+  getTechnicianById,
   createTechnician,
-  findTechnicianById,
   updateTechnician,
   deleteTechnician
 };

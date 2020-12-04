@@ -5,7 +5,7 @@ const router = express.Router();
 
 router
   .get('/', buildingController.getAllBuildings)
-  .get('/:id', buildingController.findById)
+  .get('/:id', buildingController.getBuildingById)
   .post('/', buildingController.createBuilding)
   .put('/:id', buildingController.updateBuilding)
   .delete('/:id', buildingController.deleteBuilding);

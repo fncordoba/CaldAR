@@ -2,19 +2,37 @@ const models = require('../models');
 
 const getAllBuildings = async (req, res) => {
   try {
-    const buildingsFromDB = await models.Building.find({});
-    res.status(200).json(buildingsFromDB);
+    const buildings = await models.Building.find({});
+
+    return res.status(200).json(buildings);
   } catch (error) {
-    res.status(500).json({
-      msg: 'Error ! Couldn\'t find all the buildings'
+    return res.status(500).json({
+      msg: 'An error has occurred',
+    });
+  }
+};
+
+const getBuildingById = async (req, res) => {
+  try {
+    const building = await models.Building.findById(req.params.id);
+
+    if (!building) {
+      return res.status(400).json({
+        msg: 'The building has not been found'
+      });
+    }
+    return res.status(200).json(building);
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'An error has occurred'
     });
   }
 };
 
 const createBuilding = async (req, res) => {
   if (!req.body.name || !req.body.phone || !req.body.address || !req.body.boilers) {
-    return res.status(500).json({
-      msg: 'Missing required fields to create a building'
+    return res.status(400).json({
+      msg: 'Error: Missing required fields to create a building'
     });
   }
 
@@ -25,68 +43,63 @@ const createBuilding = async (req, res) => {
     phone: req.body.phone,
     boilers: req.body.boilers,
   });
+
   try {
     const result = await building.save();
+
     return res.status(200).json(result);
   } catch (error) {
-    // Error
     return res.status(500).json({
-      msg: 'An error appeared while registering a new building',
-    });
-  }
-};
-
-const findById = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const buildingsFromDB = await models.Building.findById(id);
-    res.status(200).json(buildingsFromDB);
-  } catch (error) {
-    res.status(500).json({
-      msg: `There is no building with if of ${id}`
-    });
-  }
-};
-
-const deleteBuilding = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const result = await models.Building.findByIdAndDelete(id);
-    res.status(200).json({
-      msg: 'The next building been deleted succesfully',
-      result,
-    });
-  } catch (error) {
-    res.status(500).json({
-      msg: 'An error appeared while deleting the building',
+      msg: 'An error has occurred'
     });
   }
 };
 
 const updateBuilding = async (req, res) => {
-  const { id } = req.params;
   if (!req.body.name || !req.body.phone || !req.body.address || !req.body.boilers) {
-    return res.status(500).json({
-      msg: 'Missing required fields to create a building'
+    return res.status(400).json({
+      msg: 'Error: Missing required fields to update a building'
     });
   }
   try {
-    const result = await models.Building.findByIdAndUpdate(id, req.body, { new: true, });
+    const result = await models.Building.findByIdAndUpdate(req.params.id, req.body, { new: true, });
+
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The building has not been found'
+      });
+    }
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'An error has occurred'
+    });
+  }
+};
+
+const deleteBuilding = async (req, res) => {
+  try {
+    const result = await models.Building.findByIdAndDelete(req.params.id);
+
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The building has not been found'
+      });
+    }
     return res.status(200).json({
-      msg: 'Updated building below',
-      result
+      msg: 'The building has been deleted'
     });
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error appeared while updating the building',
+      msg: 'An error has occurred'
     });
   }
 };
 
 module.exports = {
   getAllBuildings,
+  getBuildingById,
   createBuilding,
-  findById,
-  deleteBuilding,
   updateBuilding,
+  deleteBuilding
 };

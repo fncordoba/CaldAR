@@ -1,13 +1,30 @@
 const models = require('../models');
 
-const findAllBoilers = async (req, res) => {
+const getAllBoilers = async (req, res) => {
   try {
-    const boilersResult = await models.Boilers.find({});
+    const boilers = await models.Boilers.find({});
 
-    res.status(200).json(boilersResult);
+    return res.status(200).json(boilers);
   } catch (error) {
-    res.status(500).json({
-      message: "Error. Can't get all the boilers.",
+    return res.status(500).json({
+      msg: 'An error has occurred',
+    });
+  }
+};
+
+const getBoilerById = async (req, res) => {
+  try {
+    const boiler = await models.Boilers.findById(req.params.id);
+
+    if (!boiler) {
+      return res.status(400).json({
+        msg: 'The boiler has not been found'
+      });
+    }
+    return res.status(200).json(boiler);
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'An error has occurred',
     });
   }
 };
@@ -18,8 +35,8 @@ const createBoiler = async (req, res) => {
     || !req.body.hourMaintenanceCost
     || !req.body.hourEventualCost
     || !req.body.maintenanceRate) {
-    return res.status(500).json({
-      message: 'Error. The boiler must contain all the information required.',
+    return res.status(400).json({
+      msg: 'Error: Missing required fields to create a boiler',
     });
   }
 
@@ -30,71 +47,67 @@ const createBoiler = async (req, res) => {
     hourEventualCost: req.body.hourEventualCost,
     maintenanceRate: req.body.maintenanceRate,
   });
+
   try {
     const result = await newBoiler.save();
+
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      message: 'An error happened, the boiler was not created.',
+      msg: 'An error has occurred',
     });
   }
 };
 
-const findBoilerById = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const result = await models.Boilers.findById(id);
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(500).json({
-      message: `There is no boiler with an id: ${id}`,
-    });
-  }
-};
-
-const updateBoilerById = async (req, res) => {
-  const { id } = req.params;
+const updateBoiler = async (req, res) => {
   if (!req.body.description
     || !req.body.boilerType
     || !req.body.hourMaintenanceCost
     || !req.body.hourEventualCost
     || !req.body.maintenanceRate) {
-    return res.status(500).json({
-      message: 'Error. All fields must be filled to update the boiler record.',
+    return res.status(400).json({
+      msg: 'Error: Missing required fields to update a boilerType',
     });
   }
   try {
-    const result = await models.Boilers.findByIdAndUpdate(id, req.body, { new: true, });
-    return res.status(200).json({
-      message: `The boiler with an id: ${id} has been updated.`,
-      result
-    });
+    const result = await models.Boilers.findByIdAndUpdate(req.params.id, req.body, { new: true, });
+
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The boiler has not been found'
+      });
+    }
+    return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      message: `Error. The boiler with an id: ${id} couldn't be updated.`,
+      msg: 'An error has occurred',
     });
   }
 };
 
-const deleteBoilerById = async (req, res) => {
-  const { id } = req.params;
+const deleteBoiler = async (req, res) => {
   try {
-    const result = await models.Boilers.findByIdAndDelete(id);
-    res.status(200).json({
-      message: `The boiler with an id: ${id} has been deleted.`,
-      result,
+    const result = await models.Boilers.findByIdAndDelete(req.params.id);
+
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The boiler has not been found'
+      });
+    }
+    return res.status(200).json({
+      msg: 'The boiler has been deleted'
     });
   } catch (error) {
-    res.status(500).json({
-      message: `Error. The boiler with an id: ${id} couldn't be deleted.`,
+    return res.status(500).json({
+      msg: 'An error has occurred'
     });
   }
 };
 
 module.exports = {
-  findAllBoilers,
+  getAllBoilers,
   createBoiler,
-  findBoilerById,
-  updateBoilerById,
-  deleteBoilerById
+  getBoilerById,
+  updateBoiler,
+  deleteBoiler
 };

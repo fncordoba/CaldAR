@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
+mongoose.set('useFindAndModify', false);
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
 

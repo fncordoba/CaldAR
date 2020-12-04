@@ -2,87 +2,102 @@ const models = require('../models');
 
 const getAllBoilerTypes = async (req, res) => {
   try {
-    const boilerTypesResult = await models.BoilerTypes.find({});
+    const boilerTypes = await models.BoilerTypes.find({});
 
-    res.status(200).json(boilerTypesResult);
+    return res.status(200).json(boilerTypes);
   } catch (error) {
-    res.status(500).json({
-      message: 'Error trying to fetch boilers type',
+    return res.status(500).json({
+      msg: 'An error has occurred',
+    });
+  }
+};
+
+const getBoilerTypeById = async (req, res) => {
+  try {
+    const boilerType = await models.BoilerTypes.findById(req.params.id);
+
+    if (!boilerType) {
+      return res.status(400).json({
+        msg: 'The boilerType has not been found'
+      });
+    }
+    return res.status(200).json(boilerType);
+  } catch (error) {
+    return res.status(500).json({
+      msg: 'An error has occurred',
     });
   }
 };
 
 const createBoilerType = async (req, res) => {
   if (!req.body.description) {
-    return res.status(500).json({
-      message: 'Error. The boiler type must contain all the information required.',
+    return res.status(400).json({
+      msg: 'Error: Missing required fields to create a boilerType',
     });
   }
 
-  const newBoilerTypes = new models.BoilerTypes({
+  const newBoilerType = new models.BoilerTypes({
     description: req.body.description,
   });
+
   try {
-    const result = await newBoilerTypes.save();
+    const result = await newBoilerType.save();
+
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      message: 'An error happened, the boiler type was not created.',
+      msg: 'An error has occurred'
     });
   }
 };
 
-const getBoilerTypeById = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const result = await models.BoilerTypes.findById(id);
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(500).json({
-      message: `There is no boiler Type with an id: ${id}`,
-    });
-  }
-};
-
-const updateBoilerTypeById = async (req, res) => {
-  const { id } = req.params;
+const updateBoilerType = async (req, res) => {
   if (!req.body.description) {
-    return res.status(500).json({
-      message: 'Error. Description field must be filled to update the boiler record.',
+    return res.status(400).json({
+      msg: 'Error: Missing required fields to update a boilerType',
     });
   }
   try {
-    const result = await models.BoilerTypes.findByIdAndUpdate(id, req.body, { new: true, });
-    return res.status(200).json({
-      message: `The boiler type with an id: ${id} has been updated.`,
-      result
-    });
+    const result = await models.BoilerTypes.findByIdAndUpdate(
+      req.params.id, req.body, { new: true, }
+    );
+
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The boilerType has not been found'
+      });
+    }
+    return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      message: `Error. The boiler type with an id: ${id} couldn't be updated.`,
+      msg: 'An error has occurred'
     });
   }
 };
 
 const deleteBoilerTypeById = async (req, res) => {
-  const { id } = req.params;
   try {
-    const result = await models.BoilerTypes.findByIdAndDelete(id);
-    res.status(200).json({
-      message: `The boiler type with an id: ${id} has been deleted.`,
-      result,
+    const result = await models.BoilerTypes.findByIdAndDelete(req.params.id);
+
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The boilerType has not been found'
+      });
+    }
+    return res.status(200).json({
+      msg: 'The boilerType has been deleted'
     });
   } catch (error) {
-    res.status(500).json({
-      message: `Error. The boiler type with an id: ${id} couldn't be deleted.`,
+    return res.status(500).json({
+      msg: 'An error has occurred'
     });
   }
 };
 
 module.exports = {
   getAllBoilerTypes,
-  createBoilerType,
   getBoilerTypeById,
-  updateBoilerTypeById,
-  deleteBoilerTypeById,
+  createBoilerType,
+  updateBoilerType,
+  deleteBoilerTypeById
 };
