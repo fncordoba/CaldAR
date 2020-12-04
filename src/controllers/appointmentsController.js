@@ -13,8 +13,13 @@ const getAllAppointments = async (req, res) => {
 
 const getAppointmentById = async (req, res) => {
   try {
-    const result = await models.Appointments.findById(req.params.id);
-    return res.status(200).json(result);
+    const appointment = await models.Appointments.findById(req.params.id);
+    if (!appointment) {
+      return res.status(400).json({
+        msg: 'The appointment has not found'
+      });
+    }
+    return res.status(200).json(appointment);
   } catch (error) {
     return res.status(500).json({
       msg: 'An error appeared while finding an appointment',

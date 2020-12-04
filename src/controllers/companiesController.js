@@ -1,7 +1,6 @@
 const models = require('../models');
 
 const createCompany = async (req, res) => {
-  // eslint-disable-next-line max-len
   if (!req.body.name || !req.body.phone || !req.body.address || !req.body.cuit || !req.body.email) {
     return res.status(500).json({
       msg: 'Missing required fields to create a company'
@@ -19,49 +18,55 @@ const createCompany = async (req, res) => {
     const result = await company.save();
     return res.status(200).json(result);
   } catch (error) {
-    // Error
     return res.status(500).json({
       msg: 'An error appeared while registering a new company',
     });
   }
 };
 
-const findAllCompanies = async (req, res) => {
+const getAllCompanies = async (req, res) => {
   try {
-    const dbCompanies = await models.Companies.find({});
-    res.status(200).json(dbCompanies);
+    const companies = await models.Companies.find({});
+    return res.status(200).json(companies);
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       msg: 'Error ! Couldn\'t find companies list'
     });
   }
 };
 
-const companyById = async (req, res) => {
-  const { id } = req.params;
+const getCompanyById = async (req, res) => {
   try {
-    const dbCompanies = await models.Companies.findById(id);
-    res.status(200).json(dbCompanies);
+    const company = await models.Companies.findById(req.params.id);
+    if (!company) {
+      return res.status(400).json({
+        msg: 'The company has not found'
+      });
+    }
+    return res.status(200).json(company);
   } catch (error) {
-    res.status(500).json({
-      msg: `There is no company with id of ${id}`
+    return res.status(500).json({
+      msg: 'Error ! Couldn\'t find the company'
     });
   }
 };
 
 const updateCompany = async (req, res) => {
-  const { id } = req.params;
   if (!req.body.name || !req.body.phone || !req.body.address || !req.body.cuit || !req.body.email) {
     return res.status(500).json({
       msg: 'Missing required fields to update a company'
     });
   }
   try {
-    const result = await models.Companies.findByIdAndUpdate(id, req.body, { new: true, });
-    return res.status(200).json({
-      msg: 'Updated company below',
-      result
-    });
+    const result = await models.Companies.findByIdAndUpdate(
+      req.params.id, req.body, { new: true, }
+    );
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The company has not found'
+      });
+    }
+    return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
       msg: 'An error appeared while updating the company',
@@ -73,12 +78,14 @@ const deleteCompany = async (req, res) => {
   const { id } = req.params;
   try {
     const result = await models.Companies.findByIdAndDelete(id);
-    res.status(200).json({
-      msg: 'The next company has been deleted succesfully',
-      result,
-    });
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The company has not found'
+      });
+    }
+    return res.status(200).json(result);
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       msg: 'An error occurred while deleting the company',
     });
   }
@@ -86,8 +93,8 @@ const deleteCompany = async (req, res) => {
 
 module.exports = {
   createCompany,
-  findAllCompanies,
-  companyById,
+  getAllCompanies,
+  getCompanyById,
   updateCompany,
   deleteCompany
 };
