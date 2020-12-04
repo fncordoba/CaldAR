@@ -4,10 +4,10 @@ const appointmentsController = require('../controllers/appointmentsController');
 const router = express.Router();
 
 router
-  .get('/', appointmentsController.findAll)
-  .get('/:id', appointmentsController.findById)
+  .get('/', appointmentsController.getAllAppointments)
+  .get('/:id', appointmentsController.getAppointmentById)
   .post('/', appointmentsController.createAppointment)
-  .put('/:id', appointmentsController.updateAppointmentById)
-  .delete('/:id', appointmentsController.deleteAppointmentById);
+  .put('/:id', appointmentsController.updateAppointment)
+  .delete('/:id', appointmentsController.deleteAppointment);
 
 module.exports = router;
