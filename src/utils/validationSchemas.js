@@ -17,6 +17,45 @@ const boilersSchema = Joi.object({
     .required(),
 });
 
+const techniciansSchema = Joi.object({
+  firstName: Joi.string()
+    .min(3)
+    .max(30)
+    .required(),
+  address: Joi.string()
+    .alphanum()
+    .min(4)
+    .max(40)
+    .required(),
+  lastName: Joi.string()
+    .min(3)
+    .max(30)
+    .required(),
+  phone: Joi.string()
+    .min(5)
+    .max(15)
+    .required(),
+  boilerTypes: Joi.array()
+    .items()
+    .required(),
+  email: Joi.string()
+    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+    .error(() => 'The email is not valid. Please try again')
+    .required(),
+  dateOfBirth: Joi.date()
+    .format('DD/MM/YYYY')
+    .raw()
+    .required(),
+  monthlyCapacity: Joi.number()
+    .min(1)
+    .max(6)
+    .required(),
+  hourRate: Joi.number()
+    .min(1)
+    .max(6)
+    .required()
+});
+
 const companiesSchema = Joi.object({
   name: Joi.string()
     .min(3)
@@ -62,5 +101,6 @@ module.exports = {
   companiesSchema,
   boilerTypesSchema,
   buildingSchema,
+  techniciansSchema,
   idSchema,
 };
