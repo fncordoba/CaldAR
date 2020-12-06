@@ -20,4 +20,7 @@ const validateParam = (schema, name) => (req, res, next) => {
   return next();
 };
 
-module.exports(validateBody, validateParam);
+module.exports = {
+  validateBody,
+  validateParam
+};

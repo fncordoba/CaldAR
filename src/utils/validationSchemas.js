@@ -27,4 +27,4 @@ const companiesSchema = Joi.object({
     .required(),
 });
 
-module.exports('companies', companiesSchema);
+module.exports = ('companies', companiesSchema);
