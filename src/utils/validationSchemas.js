@@ -7,12 +7,11 @@ const companiesSchema = Joi.object({
     .required(),
 
   address: Joi.string()
-    .alphanum()
     .min(3)
     .max(30)
     .required(),
 
-  quit: Joi.string()
+  cuit: Joi.string()
     .alphanum()
     .max(11)
     .required(),
@@ -27,4 +26,13 @@ const companiesSchema = Joi.object({
     .required(),
 });
 
-module.exports = ('companies', companiesSchema);
+const idSchema = Joi.object().keys({
+  param: Joi.string()
+    .regex(/^[0-9a-fA-F]{24}$/)
+    .required()
+});
+
+module.exports = {
+  companiesSchema,
+  idSchema
+};

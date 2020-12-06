@@ -6,10 +6,20 @@ const schemas = require('../utils/validationSchemas');
 const router = express.Router();
 
 router
-  .get('/', validateBody(schemas.companiesSchema), validateParam(schemas.companiesSchema), companiesController.getAllCompanies)
-  .get('/:id', validateBody(schemas.companiesSchema), validateParam(schemas.companiesSchema), companiesController.getCompanyById)
-  .post('/', validateBody(schemas.companiesSchema), validateParam(schemas.companiesSchema), companiesController.createCompany)
-  .put('/:id', validateBody(schemas.companiesSchema), validateParam(schemas.companiesSchema), companiesController.updateCompany)
-  .delete('/:id', validateBody(schemas.companiesSchema), validateParam(schemas.companiesSchema), companiesController.deleteCompany);
+  .route('/')
+  .get(companiesController.getAllCompanies)
+  .post(validateBody(schemas.companiesSchema), companiesController.createCompany);
+
+router
+  .route('/:id')
+  .get(validateParam(schemas.idSchema, 'id'), companiesController.getCompanyById)
+  .put(
+    [
+      validateParam(schemas.idSchema, 'id'),
+      validateBody(schemas.companiesSchema)
+    ],
+    companiesController.updateCompany
+  )
+  .delete(validateParam(schemas.idSchema, 'id'), companiesController.deleteCompany);
 
 module.exports = router;
