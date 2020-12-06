@@ -30,7 +30,7 @@ const getBoilerById = async (req, res) => {
 };
 
 const createBoiler = async (req, res) => {
-  const findBoilerType = await models.BoilerTypes.findById(req.body.boilerType);
+  const findBoilerType = await models.BoilerTypes.find({ _id: req.body.boilerType });
 
   if (findBoilerType.length === 0) {
     return res.status(400).json({
@@ -55,7 +55,7 @@ const createBoiler = async (req, res) => {
 };
 
 const updateBoiler = async (req, res) => {
-  const findBoilerType = await models.BoilerTypes.findById(req.body.boilerType);
+  const findBoilerType = await models.BoilerTypes.find({ _id: req.body.boilerType });
 
   if (findBoilerType.length === 0) {
     return res.status(400).json({
@@ -79,13 +79,12 @@ const updateBoiler = async (req, res) => {
 
 const deleteBoiler = async (req, res) => {
   try {
-    const findBoilerInAppointment = await models.Appointments.find({ boiler: req.body.id });
-    // console.log(findBoilerInAppointment);
-    const findBoilerInBuildings = await models.Building.find({ boilers: req.body.id });
-    // console.log(findBoilerInBuildings);
+    const findBoilerInAppointment = await models.Appointments.find({ boiler: req.params.id });
+    const findBoilerInBuildings = await models.Building.find({ boilers: req.params.id });
 
     if (findBoilerInBuildings.length === 0 && findBoilerInAppointment.length === 0) {
       const result = await models.Boilers.findByIdAndDelete(req.params.id);
+
       if (!result) {
         return res.status(400).json({
           msg: 'The boiler has not been found',
