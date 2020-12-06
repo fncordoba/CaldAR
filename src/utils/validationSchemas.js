@@ -39,6 +39,10 @@ const companiesSchema = Joi.object({
     .required(),
 });
 
+const boilerTypesSchema = Joi.object({
+    description: Joi.string().required(),
+  }),
+
 const idSchema = Joi.object().keys({
   id: Joi.string()
     .regex(/^[0-9a-fA-F]{24}$/)
@@ -48,5 +52,6 @@ const idSchema = Joi.object().keys({
 module.exports = {
   boilersSchema,
   companiesSchema,
-  idSchema
+  boilerTypesSchema,
+  idSchema,
 };

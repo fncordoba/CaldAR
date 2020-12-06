@@ -1,13 +1,28 @@
 const express = require('express');
 const boilerTypesController = require('../controllers/boilerTypesController');
+const { validateBody, validateParam } = require('../utils/validations');
+const schemas = require('../utils/validationSchemas');
 
 const router = express.Router();
 
 router
   .get('/', boilerTypesController.getAllBoilerTypes)
-  .get('/:id', boilerTypesController.getBoilerTypeById)
-  .post('/', boilerTypesController.createBoilerType)
-  .put('/:id', boilerTypesController.updateBoilerType)
-  .delete('/:id', boilerTypesController.deleteBoilerTypeById);
+  .get(
+    '/:id', validateParam(schemas.idSchema, 'id'), boilerTypesController.getBoilerTypeById,
+  )
+  .post(
+    '/',
+    validateBody(schemas.descriptionSchema),
+    boilerTypesController.createBoilerType
+  )
+  .put(
+    '/:id',
+    validateBody(schemas.descriptionSchema),
+    validateParam(schemas.idSchema, 'id'),
+    boilerTypesController.updateBoilerType
+  )
+  .delete(
+    '/:id', validateParam(schemas.idSchema, 'id'), boilerTypesController.deleteBoilerTypeById
+  );
 
 module.exports = router;

@@ -77,19 +77,30 @@ const updateBoilerType = async (req, res) => {
 
 const deleteBoilerTypeById = async (req, res) => {
   try {
-    const result = await models.BoilerTypes.findByIdAndDelete(req.params.id);
+    const boilerTypesInUseByTechnicians = await models.Technicians
+      .find({ 'boilerTypes.id': req.params.id });
+    const boilerTypesInUseByBoilers = await models.Boilers
+      .find({ boilerType: req.params.id });
 
-    if (!result) {
-      return res.status(400).json({
-        msg: 'The boilerType has not been found'
-      });
+    let responseErrorMsg = 'The boilerType it is in use';
+    if (boilerTypesInUseByTechnicians.length === 0 && boilerTypesInUseByBoilers.length === 0) {
+      const result = await models.BoilerTypes.findByIdAndDelete(req.params.id);
+
+      if (result) {
+        return res.status(200).json({
+          msg: 'The boilerType has been deleted',
+        });
+      }
+
+      responseErrorMsg = 'The boilerType has not been found';
     }
-    return res.status(200).json({
-      msg: 'The boilerType has been deleted'
+
+    return res.status(400).json({
+      msg: responseErrorMsg,
     });
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error has occurred'
+      msg: 'An error has occurred',
     });
   }
 };
@@ -99,5 +110,5 @@ module.exports = {
   getBoilerTypeById,
   createBoilerType,
   updateBoilerType,
-  deleteBoilerTypeById
+  deleteBoilerTypeById,
 };
