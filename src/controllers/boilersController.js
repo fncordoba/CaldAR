@@ -18,7 +18,7 @@ const getBoilerById = async (req, res) => {
 
     if (!boiler) {
       return res.status(400).json({
-        msg: 'The boiler has not been found'
+        msg: 'The boiler has not been found',
       });
     }
     return res.status(200).json(boiler);
@@ -30,16 +30,13 @@ const getBoilerById = async (req, res) => {
 };
 
 const createBoiler = async (req, res) => {
-  if (!req.body.description
-    || !req.body.boilerType
-    || !req.body.hourMaintenanceCost
-    || !req.body.hourEventualCost
-    || !req.body.maintenanceRate) {
+  const findBoilerType = await models.BoilerTypes.findById(req.body.boilerType);
+
+  if (findBoilerType.length === 0) {
     return res.status(400).json({
-      msg: 'Error: Missing required fields to create a boiler',
+      msg: 'The boiler type do no exist in the DataBase.',
     });
   }
-
   const newBoiler = new models.Boilers({
     description: req.body.description,
     boilerType: req.body.boilerType,
@@ -47,10 +44,8 @@ const createBoiler = async (req, res) => {
     hourEventualCost: req.body.hourEventualCost,
     maintenanceRate: req.body.maintenanceRate,
   });
-
   try {
     const result = await newBoiler.save();
-
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
@@ -60,21 +55,18 @@ const createBoiler = async (req, res) => {
 };
 
 const updateBoiler = async (req, res) => {
-  if (!req.body.description
-    || !req.body.boilerType
-    || !req.body.hourMaintenanceCost
-    || !req.body.hourEventualCost
-    || !req.body.maintenanceRate) {
+  const findBoilerType = await models.BoilerTypes.findById(req.body.boilerType);
+
+  if (findBoilerType.length === 0) {
     return res.status(400).json({
-      msg: 'Error: Missing required fields to update a boilerType',
+      msg: 'The boiler type do no exist in the DataBase.',
     });
   }
   try {
     const result = await models.Boilers.findByIdAndUpdate(req.params.id, req.body, { new: true, });
-
     if (!result) {
       return res.status(400).json({
-        msg: 'The boiler has not been found'
+        msg: 'The boiler has not been found',
       });
     }
     return res.status(200).json(result);
@@ -87,19 +79,28 @@ const updateBoiler = async (req, res) => {
 
 const deleteBoiler = async (req, res) => {
   try {
-    const result = await models.Boilers.findByIdAndDelete(req.params.id);
+    const findBoilerInAppointment = await models.Appointments.find({ boiler: req.body.id });
+    // console.log(findBoilerInAppointment);
+    const findBoilerInBuildings = await models.Building.find({ boilers: req.body.id });
+    // console.log(findBoilerInBuildings);
 
-    if (!result) {
-      return res.status(400).json({
-        msg: 'The boiler has not been found'
+    if (findBoilerInBuildings.length === 0 && findBoilerInAppointment.length === 0) {
+      const result = await models.Boilers.findByIdAndDelete(req.params.id);
+      if (!result) {
+        return res.status(400).json({
+          msg: 'The boiler has not been found',
+        });
+      }
+      return res.status(200).json({
+        msg: 'The boiler has been deleted',
       });
     }
-    return res.status(200).json({
-      msg: 'The boiler has been deleted'
+    return res.status(400).json({
+      msg: 'The boiler it is in use.',
     });
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error has occurred'
+      msg: 'An error has occurred',
     });
   }
 };
