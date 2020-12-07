@@ -91,14 +91,14 @@ const buildingSchema = Joi.object({
 
 const appointmentsSchema = Joi.object({
   building: Joi.string()
-    .required(), 
+    .required(),
   boiler: Joi.number()
     .min(0)
     .required(),
   technician: Joi.string()
-    .required(), 
+    .required(),
   type: Joi.string()
-    .required(), 
+    .required(),
   monthlyHours: Joi.number()
     .min(0)
     .required(),
