@@ -10,7 +10,7 @@ const validateBody = schema => (req, res, next) => {
 };
 
 const validateParam = (schema, name) => (req, res, next) => {
-  const result = schema.validate({ param: req.params[name] });
+  const result = schema.validate({ [name]: req.params[name] });
   if (result.error) {
     return res.status(400).json({
       error: result.error,

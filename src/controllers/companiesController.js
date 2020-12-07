@@ -81,7 +81,7 @@ const updateCompany = async (req, res) => {
 
 const deleteCompany = async (req, res) => {
   try {
-    const buildingFromCompany = await models.Building.find({ company: req.params.id });
+    const buildingFromCompany = await models.Building.findOne({ company: req.params.id });
     if (buildingFromCompany) {
       return res.status(400).json({
         msg: 'The company has a building in use',

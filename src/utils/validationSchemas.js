@@ -27,7 +27,7 @@ const companiesSchema = Joi.object({
 });
 
 const idSchema = Joi.object().keys({
-  param: Joi.string()
+  id: Joi.string()
     .regex(/^[0-9a-fA-F]{24}$/)
     .required()
 });
