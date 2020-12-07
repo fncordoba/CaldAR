@@ -39,9 +39,18 @@ const companiesSchema = Joi.object({
     .required(),
 });
 
+<<<<<<< HEAD
 const boilerTypesSchema = Joi.object({
   description: Joi.string()
     .required(),
+=======
+const buildingSchema = Joi.object({
+  name: Joi.string().required(),
+  address: Joi.string().required(),
+  phone: Joi.string().required(),
+  company: Joi.string(),
+  boilers: Joi.array().items(Joi.string()).required(),
+>>>>>>> 7b39fe6 (feature-77-pullrequest-changes: fixed asynchronous issue with  a for loop)
 });
 
 const idSchema = Joi.object().keys({
@@ -53,6 +62,12 @@ const idSchema = Joi.object().keys({
 module.exports = {
   boilersSchema,
   companiesSchema,
+<<<<<<< HEAD
   boilerTypesSchema,
   idSchema,
 }
+=======
+  buildingSchema,
+  idSchema
+};
+>>>>>>> 7b39fe6 (feature-77-pullrequest-changes: fixed asynchronous issue with  a for loop)

@@ -13,6 +13,8 @@ module.exports = {
   rules: {
     'arrow-parens': 'off',
     'comma-dangle': 'off',
-    'no-console': 'off'
+    'no-console': 'off',
+    'no-plusplus': 'off',
+    'no-await-in-loop': 'off',
   },
 };
