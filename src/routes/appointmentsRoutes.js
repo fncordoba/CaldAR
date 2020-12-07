@@ -5,9 +5,26 @@ const router = express.Router();
 
 router
   .get('/', appointmentsController.getAllAppointments)
-  .get('/:id', appointmentsController.getAppointmentById)
-  .post('/', appointmentsController.createAppointment)
-  .put('/:id', appointmentsController.updateAppointment)
-  .delete('/:id', appointmentsController.deleteAppointment);
+  .get(
+    '/:id', 
+    validateParam(schemas.idSchema, 'id'), 
+    appointmentsController.getAppointmentById
+  )
+  .post(
+    '/', 
+    validateBody(schemas.appointmentsSchema),
+    appointmentsController.createAppointment
+  )
+  .put(
+    '/:id', 
+    validateBody(schemas.appointmentsSchema),
+    validateParam(schemas.idSchema, 'id'),
+    appointmentsController.updateAppointment
+  )
+  .delete(
+    '/:id', 
+    validateParam(schemas.idSchema, 'id'), 
+    appointmentsController.deleteAppointment
+);
 
 module.exports = router;

@@ -86,19 +86,33 @@ const updateAppointment = async (req, res) => {
 
 const deleteAppointment = async (req, res) => {
   try {
-    const result = await models.Appointments.findByIdAndDelete(req.params.id);
+    const appointmenInUseByTechnicians = await models.Technicians
+      .findOne({ appointments: req.params.id });
+    const appointmenInUseByBoilers = await models.Boilers
+      .findOne({ appointments: req.params.id });
+    const appointmenInUseByBuildings = await models.Building
+      .findOne({ appointments: req.params.id });
 
-    if (!result) {
-      return res.status(400).json({
-        msg: 'The appointment has not been found'
-      });
+
+    let responseErrorMsg = 'The appointment it is in use';
+    if (!appointmenInUseByTechnicians && !appointmenInUseByBoilers && !appointmenInUseByBuildings) {
+      const result = await models.Appointments.findByIdAndDelete(req.params.id);
+
+      if (result) {
+        return res.status(200).json({
+          msg: 'The appointment has been deleted',
+        });
+      }
+
+      responseErrorMsg = 'The appointment has not been found';
     }
-    return res.status(200).json({
-      msg: 'The appointment has been deleted'
+
+    return res.status(400).json({
+      msg: responseErrorMsg,
     });
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error has occurred'
+      msg: 'An error has occurred',
     });
   }
 };

@@ -89,6 +89,21 @@ const buildingSchema = Joi.object({
   boilers: Joi.array().items(Joi.string()).required(),
 });
 
+const appointmentsSchema = Joi.object({
+  building: Joi.string()
+    .required(), 
+  boiler: Joi.number()
+    .min(0)
+    .required(),
+  technician: Joi.string()
+    .required(), 
+  type: Joi.string()
+    .required(), 
+  monthlyHours: Joi.number()
+    .min(0)
+    .required(),
+});
+
 const idSchema = Joi.object().keys({
   id: Joi.string()
     .regex(/^[0-9a-fA-F]{24}$/)
@@ -101,5 +116,6 @@ module.exports = {
   boilerTypesSchema,
   buildingSchema,
   techniciansSchema,
+  appointmentsSchema,
   idSchema,
 };

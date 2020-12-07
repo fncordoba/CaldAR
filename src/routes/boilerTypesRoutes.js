@@ -8,7 +8,8 @@ const router = express.Router();
 router
   .get('/', boilerTypesController.getAllBoilerTypes)
   .get(
-    '/:id', validateParam(schemas.idSchema, 'id'), boilerTypesController.getBoilerTypeById,
+    '/:id', validateParam(schemas.idSchema, 'id'), 
+    boilerTypesController.getBoilerTypeById,
   )
   .post(
     '/',
@@ -22,7 +23,9 @@ router
     boilerTypesController.updateBoilerType
   )
   .delete(
-    '/:id', validateParam(schemas.idSchema, 'id'), boilerTypesController.deleteBoilerTypeById
-  );
+    '/:id', 
+    validateParam(schemas.idSchema, 'id'), 
+    boilerTypesController.deleteBoilerTypeById
+);
 
 module.exports = router;
