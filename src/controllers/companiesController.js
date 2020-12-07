@@ -81,8 +81,13 @@ const updateCompany = async (req, res) => {
 
 const deleteCompany = async (req, res) => {
   try {
+    const buildingFromCompany = await models.Building.findOne({ company: req.params.id });
+    if (buildingFromCompany) {
+      return res.status(400).json({
+        msg: 'The company has a building in use',
+      });
+    }
     const result = await models.Companies.findByIdAndDelete(req.params.id);
-
     if (!result) {
       return res.status(400).json({
         msg: 'The company has not been found'
