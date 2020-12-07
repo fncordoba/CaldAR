@@ -91,11 +91,14 @@ const buildingSchema = Joi.object({
 
 const appointmentsSchema = Joi.object({
   building: Joi.string()
+    .regex(/^[0-9a-fA-F]{24}$/)  
     .required(),
   boiler: Joi.number()
     .min(0)
+    .regex(/^[0-9a-fA-F]{24}$/)
     .required(),
   technician: Joi.string()
+    .regex(/^[0-9a-fA-F]{24}$/)
     .required(),
   type: Joi.string()
     .required(),
