@@ -40,9 +40,9 @@ const companiesSchema = Joi.object({
 });
 
 const boilerTypesSchema = Joi.object({
-    description: Joi.string()
-      .required(),
-  }),
+  description: Joi.string()
+    .required(),
+});
 
 const idSchema = Joi.object().keys({
   id: Joi.string()

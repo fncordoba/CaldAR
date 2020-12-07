@@ -12,12 +12,12 @@ router
   )
   .post(
     '/',
-    validateBody(schemas.descriptionSchema),
+    validateBody(schemas.boilerTypesSchema),
     boilerTypesController.createBoilerType
   )
   .put(
     '/:id',
-    validateBody(schemas.descriptionSchema),
+    validateBody(schemas.boilerTypesSchema),
     validateParam(schemas.idSchema, 'id'),
     boilerTypesController.updateBoilerType
   )
