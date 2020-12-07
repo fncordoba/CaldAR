@@ -102,7 +102,6 @@ const deleteAppointment = async (req, res) => {
     const appointmenInUseByBuildings = await models.Building
       .findOne({ appointments: req.params.id });
 
-
     let responseErrorMsg = 'The appointment it is in use';
     if (!appointmenInUseByTechnicians && !appointmenInUseByBoilers && !appointmenInUseByBuildings) {
       const result = await models.Appointments.findByIdAndDelete(req.params.id);
