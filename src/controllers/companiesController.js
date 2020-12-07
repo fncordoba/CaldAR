@@ -82,19 +82,19 @@ const updateCompany = async (req, res) => {
 const deleteCompany = async (req, res) => {
   try {
     const buildingFromCompany = await models.Building.find({ company: req.params.id });
-    if (buildingFromCompany === null) {
-      const result = await models.Companies.findByIdAndDelete(req.params.id);
-      if (!result) {
-        return res.status(400).json({
-          msg: 'The company has not been found'
-        });
-      }
-      return res.status(200).json({
-        msg: 'The company has been deleted'
+    if (buildingFromCompany) {
+      return res.status(400).json({
+        msg: 'The company has a building in use',
       });
     }
-    return res.status(400).json({
-      msg: 'The company has a building in use',
+    const result = await models.Companies.findByIdAndDelete(req.params.id);
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The company has not been found'
+      });
+    }
+    return res.status(200).json({
+      msg: 'The company has been deleted'
     });
   } catch (error) {
     return res.status(500).json({
