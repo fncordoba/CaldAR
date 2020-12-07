@@ -4,6 +4,7 @@ const boilersSchema = Joi.object({
   description: Joi.string()
     .required(),
   boilerType: Joi.string()
+    .regex(/^[0-9a-fA-F]{24}$/)
     .required(),
   hourMaintenanceCost: Joi.number()
     .min(0)
@@ -17,7 +18,7 @@ const boilersSchema = Joi.object({
 });
 
 const idSchema = Joi.object().keys({
-  param: Joi.string()
+  id: Joi.string()
     .regex(/^[0-9a-fA-F]{24}$/)
     .required()
 });

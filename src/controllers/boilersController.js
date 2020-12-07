@@ -30,11 +30,11 @@ const getBoilerById = async (req, res) => {
 };
 
 const createBoiler = async (req, res) => {
-  const findBoilerType = await models.BoilerTypes.find({ _id: req.body.boilerType });
+  const boilerType = await models.BoilerTypes.findById(req.body.boilerType);
 
-  if (findBoilerType.length === 0) {
+  if (!boilerType) {
     return res.status(400).json({
-      msg: 'The boiler type do no exist in the DataBase.',
+      msg: 'The boiler type does not exist in the DataBase.',
     });
   }
   const newBoiler = new models.Boilers({
@@ -49,30 +49,30 @@ const createBoiler = async (req, res) => {
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error has occurred',
+      msg: 'An error has occurred.',
     });
   }
 };
 
 const updateBoiler = async (req, res) => {
-  const findBoilerType = await models.BoilerTypes.find({ _id: req.body.boilerType });
+  const boilerType = await models.BoilerTypes.findById(req.body.boilerType);
 
-  if (findBoilerType.length === 0) {
+  if (!boilerType) {
     return res.status(400).json({
-      msg: 'The boiler type do no exist in the DataBase.',
+      msg: 'The boiler type does not exist in the DataBase.',
     });
   }
   try {
     const result = await models.Boilers.findByIdAndUpdate(req.params.id, req.body, { new: true, });
     if (!result) {
       return res.status(400).json({
-        msg: 'The boiler has not been found',
+        msg: 'The boiler has not been found.',
       });
     }
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error has occurred',
+      msg: 'An error has occurred.',
     });
   }
 };
@@ -87,19 +87,19 @@ const deleteBoiler = async (req, res) => {
 
       if (!result) {
         return res.status(400).json({
-          msg: 'The boiler has not been found',
+          msg: 'The boiler has not been found.',
         });
       }
       return res.status(200).json({
-        msg: 'The boiler has been deleted',
+        msg: 'The boiler has been deleted.',
       });
     }
     return res.status(400).json({
-      msg: 'The boiler it is in use.',
+      msg: 'The boiler is used in an appointment or building.',
     });
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error has occurred',
+      msg: 'An error has occurred.',
     });
   }
 };
