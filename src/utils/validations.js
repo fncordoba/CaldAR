@@ -19,11 +19,6 @@ const validateParam = (schema, name) => (req, res, next) => {
   }
   return next();
 };
-<<<<<<< HEAD
-
-=======
->>>>>>> 7b39fe6 (feature-77-pullrequest-changes: fixed asynchronous issue with  a for loop)
-
 module.exports = {
   validateBody,
   validateParam
