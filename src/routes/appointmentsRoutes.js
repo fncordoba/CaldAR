@@ -6,10 +6,10 @@ const schemas = require('../utils/validationSchemas');
 const router = express.Router();
 
 router
-  .get('/',
-    appointmentsController.getAllAppointments)
+  .get('/', appointmentsController.getAllAppointments)
   .get(
-    '/:id', validateParam(schemas.idSchema, 'id'),
+    '/:id',
+    validateParam(schemas.idSchema, 'id'),
     appointmentsController.getAppointmentById
   )
   .post(
