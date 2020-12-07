@@ -9,7 +9,7 @@ router
   .get('/', buildingController.getAllBuildings)
   .get('/:id', validateParams(schemas.idSchema, 'id'), buildingController.getBuildingById)
   .post('/', validateBody(schemas.buildingSchema), buildingController.createBuilding)
-  .put('/:id', validateParams(schemas.idSchema, 'id'), buildingController.updateBuilding)
+  .put('/:id', [validateBody(schemas.buildingSchema), validateParams(schemas.idSchema, 'id')], buildingController.updateBuilding)
   .delete('/:id', validateParams(schemas.idSchema, 'id'), buildingController.deleteBuilding);
 
 module.exports = router;
