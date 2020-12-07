@@ -79,10 +79,10 @@ const updateBoiler = async (req, res) => {
 
 const deleteBoiler = async (req, res) => {
   try {
-    const findBoilerInAppointment = await models.Appointments.find({ boiler: req.params.id });
-    const findBoilerInBuildings = await models.Building.find({ boilers: req.params.id });
+    const findBoilerInAppointment = await models.Appointments.findOne({ boiler: req.params.id });
+    const findBoilerInBuildings = await models.Building.findOne({ boilers: req.params.id });
 
-    if (findBoilerInBuildings.length === 0 && findBoilerInAppointment.length === 0) {
+    if (!findBoilerInBuildings && !findBoilerInAppointment) {
       const result = await models.Boilers.findByIdAndDelete(req.params.id);
 
       if (!result) {
