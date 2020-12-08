@@ -37,7 +37,7 @@ const createAppointment = async (req, res) => {
     technician: req.body.technician,
     monthlyHours: req.body.monthlyHours,
   });
-  
+
   try {
     const building = await models.Building.findOne({ appointment: req.body.building });
     if (!building) {
@@ -51,7 +51,7 @@ const createAppointment = async (req, res) => {
         msg: 'The boiler assigned to the appointment was not found in the database.'
       });
     }
-    const technician = await models.Technicians.findOne({ appointment: req.body.technician });;
+    const technician = await models.Technicians.findOne({ appointment: req.body.technician });
     if (!technician) {
       return res.status(400).json({
         msg: 'The technician assigned to the appointment was not found in the database.'
@@ -67,7 +67,6 @@ const createAppointment = async (req, res) => {
 };
 
 const updateAppointment = async (req, res) => {
-  
   try {
     const building = await models.Building.findOne({ appointment: req.body.building });
     if (!building) {
@@ -81,7 +80,7 @@ const updateAppointment = async (req, res) => {
         msg: 'The boiler assigned to the appointment was not found in the database.'
       });
     }
-    const technician = await models.Technicians.findOne({ appointment: req.body.technician });;
+    const technician = await models.Technicians.findOne({ appointment: req.body.technician });
     if (!technician) {
       return res.status(400).json({
         msg: 'The technician assigned to the appointment was not found in the database.'
