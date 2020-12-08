@@ -72,9 +72,9 @@ const updateBoilerType = async (req, res) => {
 const deleteBoilerTypeById = async (req, res) => {
   try {
     const boilerTypesInUseByTechnicians = await models.Technicians
-      .findOne({ boilerTypes: req.params.id });
+      .findOne({ boilerType: req.params.id });
     const boilerTypesInUseByBoilers = await models.Boilers
-      .findOne({ boilerTypes: req.params.id });
+      .findOne({ boilerType: req.params.id });
 
     let responseErrorMsg = 'The boilerType it is in use';
     if (!boilerTypesInUseByTechnicians && !boilerTypesInUseByBoilers) {
