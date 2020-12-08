@@ -56,23 +56,9 @@ const createAppointment = async (req, res) => {
   });
 
   try {
-    const building = await models.Building.findOne({ appointment: req.body.building });
-    if (!building) {
-      return res.status(400).json({
-        msg: 'The building assigned to the appointment was not found in the database.'
-      });
-    }
-    const boiler = await models.Boilers.findOne({ appointment: req.body.boiler });
-    if (!boiler) {
-      return res.status(400).json({
-        msg: 'The boiler assigned to the appointment was not found in the database.'
-      });
-    }
-    const technician = await models.Technicians.findOne({ appointment: req.body.technician });
-    if (!technician) {
-      return res.status(400).json({
-        msg: 'The technician assigned to the appointment was not found in the database.'
-      });
+    const errorMsg = await validateAppointment(req.body);
+    if (errorMsg) {
+      return res.status(400).json({msg: errorMsg});
     }
     const result = await appointment.save();
     return res.status(200).json(result);
@@ -85,24 +71,11 @@ const createAppointment = async (req, res) => {
 
 const updateAppointment = async (req, res) => {
   try {
-    const building = await models.Building.findOne({ appointment: req.body.building });
-    if (!building) {
-      return res.status(400).json({
-        msg: 'The building assigned to the appointment was not found in the database.'
-      });
+    const errorMsg = await validateAppointment(req.body);
+    if (errorMsg) {
+      return res.status(400).json({msg: errorMsg});
     }
-    const boiler = await models.Boilers.findOne({ appointment: req.body.boiler });
-    if (!boiler) {
-      return res.status(400).json({
-        msg: 'The boiler assigned to the appointment was not found in the database.'
-      });
-    }
-    const technician = await models.Technicians.findOne({ appointment: req.body.technician });
-    if (!technician) {
-      return res.status(400).json({
-        msg: 'The technician assigned to the appointment was not found in the database.'
-      });
-    }
+
     const result = await models.Appointments.findByIdAndUpdate(
       req.params.id, req.body, { new: true, }
     );
@@ -119,6 +92,7 @@ const updateAppointment = async (req, res) => {
     });
   }
 };
+
 
 const deleteAppointment = async (req, res) => {
   try {
