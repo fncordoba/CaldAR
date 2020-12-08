@@ -1,13 +1,15 @@
 const express = require('express');
 const techniciansController = require('../controllers/techniciansController');
+const { validateBody, validateParam } = require('../utils/validation');
+const schema = require('../utils/validationSchemas');
 
 const router = express.Router();
 
 router
   .get('/', techniciansController.getAllTechnicians)
-  .get('/:id', techniciansController.getTechnicianById)
-  .post('/', techniciansController.createTechnician)
-  .put('/:id', techniciansController.updateTechnician)
-  .delete('/:id', techniciansController.deleteTechnician);
+  .get('/:id', validateParam(schema.idSchema, 'id'), techniciansController.getTechnicianById)
+  .post('/', validateBody(schema.techniciansSchema), techniciansController.createTechnician)
+  .put('/:id', validateParam(schema.idSchema, 'id'), validateBody(schema.techniciansSchema), techniciansController.updateTechnician)
+  .delete('/:id', validateParam(schema.idSchema, 'id'), techniciansController.deleteTechnician);
 
 module.exports = router;

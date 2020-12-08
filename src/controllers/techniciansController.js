@@ -30,27 +30,28 @@ const getTechnicianById = async (req, res) => {
 };
 
 const createTechnician = async (req, res) => {
-  if (!req.body.firstName || !req.body.address || !req.body.lastName || !req.body.phone
-  || !req.body.boilerTypes || !req.body.email || !req.body.dateOfBirth
-  || !req.body.monthlyCapacity || !req.body.hourRate) {
-    return res.status(400).json({
-      msg: 'Error: Missing required fields to create a technician'
-    });
+  for (let i = 0; i < req.body.boilerTypes.length; i++) {
+    const found = await models.BoilerTypes.findById(req.body.boilerTypes[i]);
+    if (!found) {
+      return res.status(400).json({
+        msg: 'Boiler type not found in the database',
+      });
+    }
   }
 
-  const technician = new models.Technicians({
-    firstName: req.body.firstName,
-    address: req.body.address,
-    lastName: req.body.lastName,
-    phone: req.body.phone,
-    boilerTypes: req.body.boilerTypes,
-    email: req.body.email,
-    dateOfBirth: req.body.dateOfBirth,
-    monthlyCapacity: req.body.monthlyCapacity,
-    hourRate: req.body.hourRate,
-  });
-
   try {
+    const technician = new models.Technicians({
+      firstName: req.body.firstName,
+      address: req.body.address,
+      lastName: req.body.lastName,
+      phone: req.body.phone,
+      boilerTypes: req.body.boilerTypes,
+      email: req.body.email,
+      dateOfBirth: req.body.dateOfBirth,
+      monthlyCapacity: req.body.monthlyCapacity,
+      hourRate: req.body.hourRate,
+    });
+
     const result = await technician.save();
 
     return res.status(200).json(result);
@@ -62,42 +63,48 @@ const createTechnician = async (req, res) => {
 };
 
 const updateTechnician = async (req, res) => {
-  if (!req.body.firstName || !req.body.address || !req.body.lastName || !req.body.phone
-    || !req.body.boilerTypes || !req.body.email || !req.body.dateOfBirth
-    || !req.body.monthlyCapacity || !req.body.hourRate) {
-    return res.status(400).json({
-      msg: 'Error: missing required fields to update a technician'
-    });
-  }
   try {
-    const result = await models.Technicians.findByIdAndUpdate(
-      req.params.id, req.body, { new: true, }
-    );
+    for (let i = 0; i < req.body.boilerTypes.length; i++) {
+      const found = await models.BoilerTypes.findById(req.body.boilerTypes[i]);
+      if (!found) {
+        return res.status(400).json({
+          msg: 'Boiler type not found in the database',
+        });
+      }
+    }
+
+    const result = await models.Technicians.findByIdAndUpdate(req.params.id,
+      req.body, { new: true, });
 
     if (!result) {
       return res.status(400).json({
-        msg: 'The technician has not been found'
+        msg: 'The building has not been found'
       });
     }
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error has occurred'
+      msg: 'An error has ocurred'
     });
   }
 };
 
 const deleteTechnician = async (req, res) => {
   try {
-    const result = await models.Technicians.findByIdAndDelete(req.params.id);
-
-    if (!result) {
-      return res.status(400).json({
-        msg: 'The technician has not been found'
+    const findTechnicianInAppointment = await models.Appointments.findOne(req.params.id);
+    if (!findTechnicianInAppointment) {
+      const result = await models.Technicians.findByIdAndDelete(req.params.id);
+      if (!result) {
+        return res.status(400).json({
+          msg: 'The technician has not been found',
+        });
+      }
+      return res.status(200).json({
+        msg: 'The technician has been deleted',
       });
     }
-    return res.status(200).json({
-      msg: 'The technician has been deleted'
+    return res.status(400).json({
+      msg: 'The technician is assigned to an appointment',
     });
   } catch (error) {
     return res.status(500).json({

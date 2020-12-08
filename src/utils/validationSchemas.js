@@ -77,6 +77,7 @@ const companiesSchema = Joi.object({
     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
     .required(),
 });
+
 const boilerTypesSchema = Joi.object({
   description: Joi.string()
     .required(),
