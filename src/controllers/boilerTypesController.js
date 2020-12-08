@@ -30,12 +30,6 @@ const getBoilerTypeById = async (req, res) => {
 };
 
 const createBoilerType = async (req, res) => {
-  if (!req.body.description) {
-    return res.status(400).json({
-      msg: 'Error: Missing required fields to create a boilerType',
-    });
-  }
-
   const newBoilerType = new models.BoilerTypes({
     description: req.body.description,
   });

@@ -30,13 +30,6 @@ const getAppointmentById = async (req, res) => {
 };
 
 const createAppointment = async (req, res) => {
-  if (!req.body.building || !req.body.boiler || !req.body.technician
-    || !req.body.type || !req.body.monthlyHours) {
-    return res.status(400).json({
-      msg: 'Error: Missing required fields to create an appointment',
-    });
-  }
-
   const appointment = new models.Appointments({
     building: req.body.building,
     boiler: req.body.boiler,
@@ -44,10 +37,27 @@ const createAppointment = async (req, res) => {
     technician: req.body.technician,
     monthlyHours: req.body.monthlyHours,
   });
-
+  
   try {
+    const building = await models.Building.findOne({ appointment: req.body.building });
+    if (!building) {
+      return res.status(400).json({
+        msg: 'The building assigned to the appointment was not found in the database.'
+      });
+    }
+    const boiler = await models.Boilers.findOne({ appointment: req.body.boiler });
+    if (!boiler) {
+      return res.status(400).json({
+        msg: 'The boiler assigned to the appointment was not found in the database.'
+      });
+    }
+    const technician = await models.Technicians.findOne({ appointment: req.body.technician });;
+    if (!technician) {
+      return res.status(400).json({
+        msg: 'The technician assigned to the appointment was not found in the database.'
+      });
+    }
     const result = await appointment.save();
-
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json({
@@ -57,16 +67,26 @@ const createAppointment = async (req, res) => {
 };
 
 const updateAppointment = async (req, res) => {
-  if (!req.body.building
-    || !req.body.boiler
-    || !req.body.technician
-    || !req.body.type
-    || !req.body.monthlyHours) {
-    return res.status(400).json({
-      msg: 'Error: Missing required fields to update an appointment',
-    });
-  }
+  
   try {
+    const building = await models.Building.findOne({ appointment: req.body.building });
+    if (!building) {
+      return res.status(400).json({
+        msg: 'The building assigned to the appointment was not found in the database.'
+      });
+    }
+    const boiler = await models.Boilers.findOne({ appointment: req.body.boiler });
+    if (!boiler) {
+      return res.status(400).json({
+        msg: 'The boiler assigned to the appointment was not found in the database.'
+      });
+    }
+    const technician = await models.Technicians.findOne({ appointment: req.body.technician });;
+    if (!technician) {
+      return res.status(400).json({
+        msg: 'The technician assigned to the appointment was not found in the database.'
+      });
+    }
     const result = await models.Appointments.findByIdAndUpdate(
       req.params.id, req.body, { new: true, }
     );
@@ -86,32 +106,19 @@ const updateAppointment = async (req, res) => {
 
 const deleteAppointment = async (req, res) => {
   try {
-    const appointmenInUseByTechnicians = await models.Technicians
-      .findOne({ appointments: req.params.id });
-    const appointmenInUseByBoilers = await models.Boilers
-      .findOne({ appointments: req.params.id });
-    const appointmenInUseByBuildings = await models.Building
-      .findOne({ appointments: req.params.id });
+    const result = await models.Appointments.findByIdAndDelete(req.params.id);
 
-    let responseErrorMsg = 'The appointment it is in use';
-    if (!appointmenInUseByTechnicians && !appointmenInUseByBoilers && !appointmenInUseByBuildings) {
-      const result = await models.Appointments.findByIdAndDelete(req.params.id);
-
-      if (result) {
-        return res.status(200).json({
-          msg: 'The appointment has been deleted',
-        });
-      }
-
-      responseErrorMsg = 'The appointment has not been found';
+    if (!result) {
+      return res.status(400).json({
+        msg: 'The appointment has not been found'
+      });
     }
-
-    return res.status(400).json({
-      msg: responseErrorMsg,
+    return res.status(200).json({
+      msg: 'The appointment has been deleted'
     });
   } catch (error) {
     return res.status(500).json({
-      msg: 'An error has occurred',
+      msg: 'An error has occurred'
     });
   }
 };

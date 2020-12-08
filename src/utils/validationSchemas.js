@@ -93,7 +93,7 @@ const appointmentsSchema = Joi.object({
   building: Joi.string()
     .regex(/^[0-9a-fA-F]{24}$/)
     .required(),
-  boiler: Joi.number()
+  boiler: Joi.string()
     .min(0)
     .regex(/^[0-9a-fA-F]{24}$/)
     .required(),
