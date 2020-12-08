@@ -43,8 +43,6 @@ const techniciansSchema = Joi.object({
     .error(() => 'The email is not valid. Please try again')
     .required(),
   dateOfBirth: Joi.date()
-    .format('DD/MM/YYYY')
-    .raw()
     .required(),
   monthlyCapacity: Joi.number()
     .min(1)

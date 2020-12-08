@@ -30,16 +30,16 @@ const getTechnicianById = async (req, res) => {
 };
 
 const createTechnician = async (req, res) => {
-  for (let i = 0; i < req.body.boilerTypes.length; i++) {
-    const found = await models.BoilerTypes.findById(req.body.boilerTypes[i]);
-    if (!found) {
-      return res.status(400).json({
-        msg: 'Boiler type not found in the database',
-      });
-    }
-  }
-
   try {
+    for (let i = 0; i < req.body.boilerTypes.length; i++) {
+      const found = await models.BoilerTypes.findById(req.body.boilerTypes[i]);
+      if (!found) {
+        return res.status(400).json({
+          msg: 'Boiler type not found in the database',
+        });
+      }
+    }
+
     const technician = new models.Technicians({
       firstName: req.body.firstName,
       address: req.body.address,

@@ -1,6 +1,6 @@
 const express = require('express');
 const techniciansController = require('../controllers/techniciansController');
-const { validateBody, validateParam } = require('../utils/validation');
+const { validateBody, validateParam } = require('../utils/validations');
 const schema = require('../utils/validationSchemas');
 
 const router = express.Router();
