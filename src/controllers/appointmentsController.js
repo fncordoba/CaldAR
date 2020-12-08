@@ -47,18 +47,18 @@ const validateAppointment = async (body) => {
 };
 
 const createAppointment = async (req, res) => {
-  const appointment = new models.Appointments({
-    building: req.body.building,
-    boiler: req.body.boiler,
-    type: req.body.type,
-    technician: req.body.technician,
-    monthlyHours: req.body.monthlyHours,
-  });
-
   try {
+    const appointment = new models.Appointments({
+      building: req.body.building,
+      boiler: req.body.boiler,
+      type: req.body.type,
+      technician: req.body.technician,
+      monthlyHours: req.body.monthlyHours,
+    });
+
     const errorMsg = await validateAppointment(req.body);
     if (errorMsg) {
-      return res.status(400).json({msg: errorMsg});
+      return res.status(400).json({ msg: errorMsg });
     }
     const result = await appointment.save();
     return res.status(200).json(result);
@@ -73,7 +73,7 @@ const updateAppointment = async (req, res) => {
   try {
     const errorMsg = await validateAppointment(req.body);
     if (errorMsg) {
-      return res.status(400).json({msg: errorMsg});
+      return res.status(400).json({ msg: errorMsg });
     }
 
     const result = await models.Appointments.findByIdAndUpdate(
@@ -92,7 +92,6 @@ const updateAppointment = async (req, res) => {
     });
   }
 };
-
 
 const deleteAppointment = async (req, res) => {
   try {
