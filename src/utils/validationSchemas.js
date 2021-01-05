@@ -45,12 +45,8 @@ const techniciansSchema = Joi.object({
   dateOfBirth: Joi.date()
     .required(),
   monthlyCapacity: Joi.number()
-    .min(1)
-    .max(6)
     .required(),
   hourRate: Joi.number()
-    .min(1)
-    .max(6)
     .required()
 });
 

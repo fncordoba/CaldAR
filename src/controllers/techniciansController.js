@@ -91,7 +91,7 @@ const updateTechnician = async (req, res) => {
 
 const deleteTechnician = async (req, res) => {
   try {
-    const findTechnicianInAppointment = await models.Appointments.findOne(req.params.id);
+    const findTechnicianInAppointment = await models.Appointments.findById(req.params.id);
     if (!findTechnicianInAppointment) {
       const result = await models.Technicians.findByIdAndDelete(req.params.id);
       if (!result) {
