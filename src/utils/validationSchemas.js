@@ -23,7 +23,6 @@ const techniciansSchema = Joi.object({
     .max(30)
     .required(),
   address: Joi.string()
-    .alphanum()
     .min(4)
     .max(40)
     .required(),
