@@ -4,7 +4,6 @@ const { validateBody, validateParam } = require('../utils/validations');
 const authMiddleWare = require('../utils/authMiddleWare');
 const schemas = require('../utils/validationSchemas');
 
-
 const router = express.Router();
 
 router
