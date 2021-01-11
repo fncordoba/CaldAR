@@ -72,7 +72,7 @@ const updateBoilerType = async (req, res) => {
 const deleteBoilerTypeById = async (req, res) => {
   try {
     const boilerTypesInUseByTechnicians = await models.Technicians
-      .findOne({ boilerType: req.params.id });
+      .findOne({ boilerTypes: req.params.id });
     const boilerTypesInUseByBoilers = await models.Boilers
       .findOne({ boilerType: req.params.id });
 
