@@ -30,15 +30,15 @@ const getAppointmentById = async (req, res) => {
 };
 
 const validateAppointment = async (body) => {
-  const building = await models.Building.findOne({ appointment: body.building });
+  const building = await models.Building.findById(body.building);
   if (!building) {
     return 'The building assigned to the appointment was not found in the database.';
   }
-  const boiler = await models.Boilers.findOne({ appointment: body.boiler });
+  const boiler = await models.Boilers.findById(body.boiler);
   if (!boiler) {
     return 'The boiler assigned to the appointment was not found in the database.';
   }
-  const technician = await models.Technicians.findOne({ appointment: body.technician });
+  const technician = await models.Technicians.findById(body.technician);
   if (!technician) {
     return 'The technician assigned to the appointment was not found in the database.';
   }
@@ -48,6 +48,11 @@ const validateAppointment = async (body) => {
 
 const createAppointment = async (req, res) => {
   try {
+    const errorMsg = await validateAppointment(req.body);
+    if (errorMsg) {
+      return res.status(400).json({ msg: errorMsg });
+    }
+
     const appointment = new models.Appointments({
       building: req.body.building,
       boiler: req.body.boiler,
@@ -55,11 +60,6 @@ const createAppointment = async (req, res) => {
       technician: req.body.technician,
       monthlyHours: req.body.monthlyHours,
     });
-
-    const errorMsg = await validateAppointment(req.body);
-    if (errorMsg) {
-      return res.status(400).json({ msg: errorMsg });
-    }
     const result = await appointment.save();
     return res.status(200).json(result);
   } catch (error) {
