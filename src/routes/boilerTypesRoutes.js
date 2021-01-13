@@ -9,27 +9,28 @@ const router = express.Router();
 router
   .get('/', authMiddleWare, boilerTypesController.getAllBoilerTypes)
   .get(
-    '/:id', authMiddleWare,
+    '/:id',
     validateParam(schemas.idSchema, 'id'),
+    authMiddleWare,
     boilerTypesController.getBoilerTypeById,
   )
   .post(
     '/',
-    authMiddleWare,
     validateBody(schemas.boilerTypesSchema),
+    authMiddleWare,
     boilerTypesController.createBoilerType
   )
   .put(
     '/:id',
-    authMiddleWare,
     validateBody(schemas.boilerTypesSchema),
     validateParam(schemas.idSchema, 'id'),
+    authMiddleWare,
     boilerTypesController.updateBoilerType
   )
   .delete(
     '/:id',
-    authMiddleWare,
     validateParam(schemas.idSchema, 'id'),
+    authMiddleWare,
     boilerTypesController.deleteBoilerTypeById
   );
 
